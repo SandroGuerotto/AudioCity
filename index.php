@@ -1,26 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>AudioCity</title>
-	
-	<!-- Meta -->
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	
-	<!-- Icon -->
-	<link rel="icon" type="image/png"href="images/logo_icon.png">
-
-	<!-- CSS -->
-	<link rel="stylesheet" href="css/querries.css">
-	<link rel="stylesheet" href="css/styles.css">
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-	<!-- Script -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-	<script src="js/scroll.js"></script>
-	
-</head>
+<?php include_once "header/header.php"; ?>
 <body>
 
 <!-- Navbar (sit on top) -->
@@ -30,10 +10,10 @@
     <!-- Right-sided navbar links -->
     <div class="right hide-small">
       <a href="#about" class="bar-item button">ABOUT</a>
-      <a href="#team" class="bar-item button"><i class="fa fa-search"></i> DISCOVER</a>
-      <a href="#work" class="bar-item button"><i class="fa fa-th"></i> MUSIC</a>
+      <a href="#discover" class="bar-item button"><i class="fa fa-search"></i> DISCOVER</a>
+      <a href="#music" class="bar-item button"><i class="fa fa-th"></i> MUSIC</a>
       <!--<a href="#pricing" class="bar-item button"><i class="fa fa-usd"></i> PRICING</a>-->
-      <a href="#contact" class="bar-item button"><i class="fa fa-sign-in"></i> LOGIN</a>
+      <a href="#login" class="bar-item button"><i class="fa fa-sign-in"></i> LOGIN</a>
     </div>
     <!-- Hide right-floated links on small screens and replace them with a menu icon -->
 
@@ -58,15 +38,11 @@
   <div class="display-left padding-xxlarge text-white fadein ">
     <span class="jumbo hide-small">Discover Music in a new way</span><br>
     <span class="xxlarge hide-large hide-medium">AudioCity</span><br>
-    <!--<span class="large">Discover music in a new way</span>
-    <p><a href="#about" class="button white padding-large large margin-top opacity hover-opacity-off">Learn more and start today</a></p>-->
   </div> 
   <div class="display-bottomleft padding-xxlarge text-white large">
     <a href="#" class="hover-text-white"><i class="fa fa-facebook-official hover-text-indigo"></i></a>
-    <!--<a href="#" class="hover-text-white"><i class="fa fa-flickr hover-text-red"></i></a>-->
     <a href="#" class="hover-text-white"><i class="fa fa-instagram hover-text-purple"></i></a>
     <a href="#" class="hover-text-white"><i class="fa fa-twitter hover-text-light-blue"></i></a>
-    <!--<a href="#" class="hover-text-white"><i class="fa fa-linkedin hover-text-indigo"></i></a>-->
   </div>
 </header>
 
@@ -75,31 +51,26 @@
   <h3 class="center">ABOUT AUDIOCITY</h3>
   <p class="center large">Discover Music in a new way</p>
   <div class="row-padding center" style="margin-top:64px">
-    <div class="quarter">
+    <div class="third padding-left padding-right">
       <i class="fa fa-desktop margin-bottom jumbo center"></i>
       <p class="large">Responsive</p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.</p>
+      <p>Mit AudioCity ist es ganz einfach die richtige Musik für jeden Augenblick zu finden – auf deinem Handy, Computer, Tablet und anderen Geräten.</p>
     </div>
-    <div class="quarter">
+    <div class="third padding-left padding-right">
       <i class="fa fa-heart margin-bottom jumbo"></i>
       <p class="large">Passion</p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.</p>
+      <p>AudioCity sieht die Musik als Kunstform. Nur die besten Musikwerke nehmen wir nur in unser Angebot auf.</p>
     </div>
-    <div class="quarter">
-      <i class="fa fa-diamond margin-bottom jumbo"></i>
-      <p class="large">Design</p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.</p>
-    </div>
-    <div class="quarter">
-      <i class="fa fa-cog margin-bottom jumbo"></i>
-      <p class="large">Support</p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.</p>
+    <div class="third padding-left padding-right">
+      <i class="fa fa-globe margin-bottom jumbo"></i>
+      <p class="large">Discover</p>
+      <p>Entdecke die aktuellen Charts, Neuerscheinungen und die besten Playlists für jeden Moment.</p>
     </div>
   </div>
 </div>
 
 <!-- Promo Section - "We know design" -->
-<div class="container light-grey padding-64">
+<div class="container light-grey padding-64" id="discover">
   <div class="row-padding">
     <div class="col m6">
       <h3>We know design.</h3>
@@ -113,7 +84,6 @@
 </div>
 
 <!-- Team Section -->
-<!--
 <div class="container padding-128" id="team">
   <h3 class="center">THE TEAM</h3>
   <p class="center large">The ones who runs this company</p>
@@ -164,8 +134,8 @@
     </div>
   </div>
 </div>
--->
-<!-- Promo Section "Statistics" --> <!--
+
+<!-- Promo Section "Statistics" --> 
 <div class="container row center dark-grey padding-64">
   <div class="quarter">
     <span class="xxlarge">14+</span>
@@ -183,9 +153,8 @@
     <span class="xxlarge">150+</span>
     <br>Meetings
   </div>
-</div> -->
-
-<!-- Work Section --> <!--
+</div> 
+<!-- Work Section --> 
 <div class="container padding-128" id="work">
   <h3 class="center">OUR WORK</h3>
   <p class="center large">What we've done for people</p>
@@ -220,7 +189,7 @@
     </div>
   </div>
 </div>
--->
+
 <!-- Modal for full size images on click-->
 <div id="modal01" class="modal black" onclick="this.style.display='none'">
   <span class="closebtn text-white opacity hover-opacity-off xxlarge container display-topright" title="Close Modal Image">&times;</span>
@@ -230,7 +199,7 @@
   </div>
 </div>
 
-<!-- Skills Section --><!--
+<!-- Skills Section -->
 <div class="container light-grey padding-64">
   <div class="row-padding">
     <div class="col m6">
@@ -255,9 +224,8 @@
       </div>
     </div>
   </div>
-</div>-->
-
-<!-- Pricing Section --> <!--
+</div>
+<!-- Pricing Section -->
 <div class="container padding-128 center dark-grey" id="pricing">
   <h3>PRICING</h3>
   <p class="large">Choose a pricing plan that fits your needs.</p>
@@ -311,37 +279,7 @@
       </ul>
     </div>
   </div>
-</div> -->
-
-<!-- Contact Section --><!--
-<div class="container padding-128 light-grey" id="contact">
-  <h3 class="center">CONTACT</h3>
-  <p class="center large">Lets get in touch. Send us a message:</p>
-  <div class="row-padding" style="margin-top:64px">
-    <div class="half">
-      <p><i class="fa fa-map-marker fa-fw xxlarge margin-right"></i> Chicago, US</p>
-      <p><i class="fa fa-phone fa-fw xxlarge margin-right"></i> Phone: +00 151515</p>
-      <p><i class="fa fa-envelope fa-fw xxlarge margin-right"> </i> Email: mail@mail.com</p>
-      <br>
-      <form action="/action_page.php" target="_blank">
-        <p><input class="input border" type="text" placeholder="Name" required name="Name"></p>
-        <p><input class="input border" type="text" placeholder="Email" required name="Email"></p>
-        <p><input class="input border" type="text" placeholder="Subject" required name="Subject"></p>
-        <p><input class="input border" type="text" placeholder="Message" required name="Message"></p>
-        <p>
-          <button class="button black" type="submit">
-            <i class="fa fa-paper-plane"></i> SEND MESSAGE
-          </button>
-        </p>
-      </form>
-    </div>
-    <div class="half">-->
-      <!-- Add Google Maps --> <!--
-      <div id="googleMap" class="greyscale-max" style="width:100%;height:510px;"></div>
-    </div>
-  </div>
 </div>
--->
 <!-- Footer -->
 <footer class="center black padding-64">
   <a href="#home" class="button"><i class="fa fa-arrow-up margin-right"></i>To the top</a>

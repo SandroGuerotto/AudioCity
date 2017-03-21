@@ -1,4 +1,3 @@
-/* W3.CSS 2.98 Mar 2017 by Jan Egil and Borge Refsnes */
 html{box-sizing:border-box}*,*:before,*:after{box-sizing:inherit}
 /* Extract from normalize.css by Nicolas Gallagher and Jonathan Neal git.io/normalize */
 html{-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{margin:0}
@@ -267,8 +266,15 @@ input[type=checkbox].check:disabled+.validate,input[type=radio].radio:disabled+.
 .red,.hover-red:hover{color:#fff;background-color:#f44336}
 .purple,.hover-purple:hover{color:#fff;background-color:#9c27b0}
 .white,.hover-white:hover{color:#000;background-color:#fff}
+.grey,.hover-grey:hover,.gray,.hover-gray:hover{color:#000;background-color:#9e9e9e}
+.light-grey,.hover-light-grey:hover,.light-gray,.hover-light-gray:hover{color:#000;background-color:#f1f1f1}
+.dark-grey,.hover-dark-grey:hover,.dark-gray,.hover-dark-gray:hover{color:#fff;background-color:#616161}
 .text-indigo,.hover-text-indigo:hover{color:#3f51b5}
 .text-purple,.hover-text-purple:hover{color:#9c27b0}
 .text-light-blue,.hover-text-light-blue:hover{color:#87CEEB}
 .text-red,.hover-text-red:hover{color:#f44336}
 .text-white,.hover-text-white:hover{color:#fff}
+.text-black,.hover-text-black:hover{color:#000}
+.text-grey,.hover-text-grey:hover,.text-gray,.hover-text-gray:hover{color:#757575}
+.text-light-grey,.hover-text-light-grey:hover,.text-light-gray,.hover-text-light-gray:hover{color:#f1f1f1}
+.text-dark-grey,.hover-text-dark-grey:hover,.text-dark-gray,.hover-text-dark-gray:hover{color:#3a3a3a}
