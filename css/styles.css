@@ -122,6 +122,13 @@ h1 a,h2 a,h3 a,h4 a,h5 a,h6 a{font-weight:inherit}
 	height: 25px;
 }
 
+/* Discover */
+.discover-img{
+	width:100%;
+}
+.discover-date{
+	float: right;;
+}
 
 .fadein{
 	-webkit-animation: fadein 4s;

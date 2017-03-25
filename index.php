@@ -1,23 +1,30 @@
 <!DOCTYPE html>
+<?php
+require_once("model/CustomSession.php");
+$session = CustomSession::getInstance();
+/** @var User $currentUser */
+$currentUser = $session->getCurrentUser();
+?>
 <html>
 <?php include_once "header/header.php"; ?>
 <body>
 
 <!-- Navbar (sit on top) -->
 <div class="top">
-  <div class="bar card-2" id="myNavbar">
+  <div class="bar card-2 " id="myNavbar">
     <a href="#home" class="bar-item button wide"><img src="images/logo_icon.png" class="logo"/>AudioCity</a>
     <!-- Right-sided navbar links -->
     <div class="right hide-small">
       <a href="#about" class="bar-item button">ABOUT</a>
-      <a href="#discover" class="bar-item button"><i class="fa fa-search"></i> DISCOVER</a>
-      <a href="#music" class="bar-item button"><i class="fa fa-th"></i> MUSIC</a>
+      <a href="#discover" class="bar-item button"><i class="fa fa-search"></i>DISCOVER</a>
+      <a href="#music" class="bar-item button"><i class="fa fa-th"></i>MUSIC</a>
       <!--<a href="#pricing" class="bar-item button"><i class="fa fa-usd"></i> PRICING</a>-->
-      <a href="#login" class="bar-item button"><i class="fa fa-sign-in"></i> LOGIN</a>
+<!--      <a href="#login" class="bar-item button"><i class="fa fa-sign-in"></i> LOGIN</a>-->
+      <a href="#login" class="bar-item button"><i <?= $currentUser != null ? " class=\"fa fa-sign-out\"" : " class=\"fa fa-sign-in\"" ?> ></i> <?= $currentUser != null ? "LOGOUT" : "LOGIN" ?></a>
     </div>
     <!-- Hide right-floated links on small screens and replace them with a menu icon -->
 
-    <a href="javascript:void(0)" class="bar-item button right hide-large hide-medium" onclick="w3_open()">
+    <a href="javascript:void(0)" class="bar-item button right hide-large hide-medium" onclick="menu_open()"/>
       <i class="fa fa-bars padding-right padding-left"></i>
     </a>
   </div>
@@ -25,12 +32,11 @@
 
 <!-- Sidenav on small screens when clicking the menu icon -->
 <nav class="sidenav black card-2 animate-left hide-medium hide-large" style="display:none" id="mySidenav">
-  <a href="javascript:void(0)" onclick="w3_close()" class="large padding-16">Close &times;</a>
-  <a href="#about" onclick="w3_close()">ABOUT</a>
-  <a href="#team" onclick="w3_close()">TEAM</a>
-  <a href="#work" onclick="w3_close()">WORK</a>
-  <a href="#pricing" onclick="w3_close()">PRICING</a>
-  <a href="#contact" onclick="w3_close()">CONTACT</a>
+    <a href="javascript:void(0)" onclick="menu_close()" class="large padding-16"><i class="fa fa-times"></i> Close </a>
+    <a href="#about" onclick="menu_close()">ABOUT</a>
+    <a href="#discover" onclick="menu_close()">DISCOVER</a>
+    <a href="#music" onclick="menu_close()">MUSIC</a>
+    <a href="#login" onclick="menu_close()"><?= $currentUser != null ? "LOGOUT" : "LOGIN" ?></a>
 </nav>
 
 <!-- Header with full-height image -->
@@ -59,7 +65,7 @@
     <div class="third padding-left padding-right">
       <i class="fa fa-heart margin-bottom jumbo"></i>
       <p class="large">Passion</p>
-      <p>AudioCity sieht die Musik als Kunstform. Nur die besten Musikwerke nehmen wir nur in unser Angebot auf.</p>
+      <p>Auf AudioCity findest Du unzählige Songs. Hör Dir Deine Lieblingssongs an, entdecke neue Titel und bau Dir so Deine ganz persönliche Musiksammlung auf.</p>
     </div>
     <div class="third padding-left padding-right">
       <i class="fa fa-globe margin-bottom jumbo"></i>
@@ -68,92 +74,47 @@
     </div>
   </div>
 </div>
-
-<!-- Promo Section - "We know design" -->
-<div class="container light-grey padding-64" id="discover">
-  <div class="row-padding">
-    <div class="col m6">
-      <h3>We know design.</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod<br>tempor incididunt ut labore et dolore.</p>
-      <p><a href="#work" class="button black"><i class="fa fa-th">&nbsp;</i> View Our Works</a></p>
-    </div>
-    <div class="col m6">
-      <img class="image round-large" src="images/phone_buildings.jpg" alt="Buildings" width="700" height="394">
-    </div>
-  </div>
-</div>
-
-<!-- Team Section -->
-<div class="container padding-128" id="team">
-  <h3 class="center">THE TEAM</h3>
-  <p class="center large">The ones who runs this company</p>
-  <div class="row-padding grayscale" style="margin-top:64px">
-    <div class="col l3 m6 margin-bottom">
-      <div class="card-2">
-        <img src="images/team2.jpg" alt="John" style="width:100%">
-        <div class="container">
-          <h3>John Doe</h3>
-          <p class="opacity">CEO & Founder</p>
-          <p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
-          <p><button class="button block"><i class="fa fa-envelope"></i> Contact</button></p>
-        </div>
-      </div>
-    </div>
-    <div class="col l3 m6 margin-bottom">
-      <div class="card-2">
-        <img src="images/team1.jpg" alt="Jane" style="width:100%">
-        <div class="container">
-          <h3>Anja Doe</h3>
-          <p class="opacity">Art Director</p>
-          <p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
-          <p><button class="button block"><i class="fa fa-envelope"></i> Contact</button></p>
-        </div>
-      </div>
-    </div>
-    <div class="col l3 m6 margin-bottom">
-      <div class="card-2">
-        <img src="images/team3.jpg" alt="Mike" style="width:100%">
-        <div class="container">
-          <h3>Mike Ross</h3>
-          <p class="opacity">Web Designer</p>
-          <p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
-          <p><button class="button block"><i class="fa fa-envelope"></i> Contact</button></p>
-        </div>
-      </div>
-    </div>
-    <div class="col l3 m6 margin-bottom">
-      <div class="card-2">
-        <img src="images/team4.jpg" alt="Dan" style="width:100%">
-        <div class="container">
-          <h3>Dan Star</h3>
-          <p class="opacity">Designer</p>
-          <p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
-          <p><button class="button block"><i class="fa fa-envelope"></i> Contact</button></p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Promo Section "Statistics" --> 
+<!-- Promo Section "Statistics" -->
 <div class="container row center dark-grey padding-64">
-  <div class="quarter">
-    <span class="xxlarge">14+</span>
-    <br>Partners
+    <div class="quarter">
+        <span class="xxlarge">100+</span>
+        <br>Genre
+    </div>
+    <div class="quarter">
+        <span class="xxlarge">1'200+</span>
+        <br>Alben
+    </div>
+    <div class="quarter">
+        <span class="xxlarge">15'000+</span>
+        <br>Lieder
+    </div>
+    <div class="quarter">
+        <span class="xxlarge">25'100'000+</span>
+        <br>Glückliche Hörer
+    </div>
+</div>
+<!-- Discovr Section -->
+<div class="container light-grey padding-64" id="discover">
+  <h3 class="center">DISCOVER</h3>
+  <p class="center large">TOP 4</p>
+  <div class="  row-padding " style="margin-top:64px">
+      <?php include_once 'controller/TopSongs.php';
+        $top = new TopSongs();
+      foreach ($top->getToplist() as $item) {
+        $htmlitem = $top->getHtmlItem();
+        $htmlitem = str_replace("{id}", $item->getId(), $htmlitem);
+        $htmlitem = str_replace("{album}", $item->getAlbum() == null ? "&nbsp;" : $item->getAlbum(), $htmlitem);
+        $htmlitem = str_replace("{piclink}", $item->getPiclink(), $htmlitem);
+        $htmlitem = str_replace("{titel}", $item->getName(), $htmlitem);
+        $htmlitem = str_replace("{artist}", $item->getArtist(), $htmlitem);
+        $htmlitem = str_replace("{duration}", $item->getLengthFormatted(), $htmlitem);
+        $htmlitem = str_replace("{release}", $item->getDate(), $htmlitem);
+        echo $htmlitem;
+      } ?>
   </div>
-  <div class="quarter">
-    <span class="xxlarge">55+</span>
-    <br>Projects Done
-  </div>
-  <div class="quarter">
-    <span class="xxlarge">89+</span>
-    <br>Happy Clients
-  </div>
-  <div class="quarter">
-    <span class="xxlarge">150+</span>
-    <br>Meetings
-  </div>
-</div> 
+</div>
+
+<?php /*
 <!-- Work Section --> 
 <div class="container padding-128" id="work">
   <h3 class="center">OUR WORK</h3>
@@ -225,21 +186,22 @@
     </div>
   </div>
 </div>
+ */ ?>
 <!-- Pricing Section -->
 <div class="container padding-128 center dark-grey" id="pricing">
   <h3>PRICING</h3>
-  <p class="large">Choose a pricing plan that fits your needs.</p>
+  <p class="large">Kostenloser Musikgenuss. Oder hole Dir AudioCity Premium, um Songs direkt abzuspielen. Immer und überall.</p>
   <div class="row-padding" style="margin-top:64px">
     <div class="third section">
-      <ul class="ul white hover-shadow">
-        <li class="black xlarge padding-32">Basic</li>
-        <li class="padding-16"><b>10GB</b> Storage</li>
-        <li class="padding-16"><b>10</b> Emails</li>
-        <li class="padding-16"><b>10</b> Domains</li>
-        <li class="padding-16"><b>Endless</b> Support</li>
+      <ul class="ul white hover-shadow text-dark-blue">
+        <li class="xlarge padding-32">Free</li>
+        <li class="padding-16"><b><i class="fa fa-check"></i></b> 1 Benutzer</li>
+        <li class="padding-16"><b><i class="fa fa-check"></i></b> eigene Playlist</li>
+        <li class="padding-16"><b><i class="fa fa-close"></i></b> Keine Werbung</li>
+        <li class="padding-16"><b><i class="fa fa-close"></i></b> Musik offline hören</li>
         <li class="padding-16">
-          <h2 class="wide">$ 10</h2>
-          <span class="opacity">per month</span>
+          <h2 class="wide">Fr. 0</h2>
+          <span class="opacity">pro Monat</span>
         </li>
         <li class="light-grey padding-24">
           <button class="button black padding-large">Sign Up</button>
@@ -247,15 +209,15 @@
       </ul>
     </div>
     <div class="third">
-      <ul class="ul white hover-shadow">
-        <li class="red xlarge padding-48">Pro</li>
-        <li class="padding-16"><b>25GB</b> Storage</li>
-        <li class="padding-16"><b>25</b> Emails</li>
-        <li class="padding-16"><b>25</b> Domains</li>
-        <li class="padding-16"><b>Endless</b> Support</li>
+      <ul class="ul white hover-shadow text-dark-blue">
+        <li class="red xlarge padding-48">Premium</li>
+        <li class="padding-16"><b><i class="fa fa-check"></i></b> 1 Benutzer</li>
+        <li class="padding-16"><b><i class="fa fa-check"></i></b> eigene Playlist</li>
+        <li class="padding-16"><b><i class="fa fa-check"></i></b> Keine Werbung</li>
+        <li class="padding-16"><b><i class="fa fa-check"></i></b> Musik offline hören</li>
         <li class="padding-16">
-          <h2 class="wide">$ 25</h2>
-          <span class="opacity">per month</span>
+          <h2 class="wide">Fr. 10</h2>
+          <span class="opacity">pro Monat</span>
         </li>
         <li class="light-grey padding-24">
           <button class="button black padding-large">Sign Up</button>
@@ -263,15 +225,15 @@
       </ul>
     </div>
     <div class="third section">
-      <ul class="ul white hover-shadow">
-        <li class="black xlarge padding-32">Premium</li>
-        <li class="padding-16"><b>50GB</b> Storage</li>
-        <li class="padding-16"><b>50</b> Emails</li>
-        <li class="padding-16"><b>50</b> Domains</li>
-        <li class="padding-16"><b>Endless</b> Support</li>
+      <ul class="ul white hover-shadow text-dark-blue">
+        <li class="xlarge padding-32">Family</li>
+        <li class="padding-16"><b><i class="fa fa-check"></i></b> 5 Benutzer</li>
+        <li class="padding-16"><b><i class="fa fa-check"></i></b> eigene Playlist</li>
+        <li class="padding-16"><b><i class="fa fa-check"></i></b> Keine Werbung</li>
+        <li class="padding-16"><b><i class="fa fa-check"></i></b> Musik offline hören</li>
         <li class="padding-16">
-          <h2 class="wide">$ 50</h2>
-          <span class="opacity">per month</span>
+          <h2 class="wide">Fr. 20</h2>
+          <span class="opacity">pro Monat</span>
         </li>
         <li class="light-grey padding-24">
           <button class="button black padding-large">Sign Up</button>
@@ -281,7 +243,7 @@
   </div>
 </div>
 <!-- Footer -->
-<footer class="center black padding-64">
+<footer class="center padding-64">
   <a href="#home" class="button"><i class="fa fa-arrow-up margin-right"></i>To the top</a>
   <div class="xlarge section">
     <i class="fa fa-facebook-official hover-text-indigo"></i>
@@ -294,21 +256,7 @@
  
 <!-- Add Google Maps -->
 <script> 
-function myMap()
-{/*
-  myCenter=new google.maps.LatLng(41.878114, -87.629798);
-  var mapOptions= {
-    center:myCenter,
-    zoom:12, scrollwheel: false, draggable: false,
-    mapTypeId:google.maps.MapTypeId.ROADMAP
-  };
-  var map=new google.maps.Map(document.getElementById("googleMap"),mapOptions);
 
-  var marker = new google.maps.Marker({
-    position: myCenter,
-  });
-  marker.setMap(map); */
-}
 // Modal Image Gallery
 function onClick(element) {
   document.getElementById("img01").src = element.src;
@@ -321,7 +269,7 @@ function onClick(element) {
 // Toggle between showing and hiding the sidenav when clicking the menu icon
 var mySidenav = document.getElementById("mySidenav");
 
-function w3_open() {
+function menu_open() {
     if (mySidenav.style.display === 'block') {
         mySidenav.style.display = 'none';
     } else {
@@ -330,16 +278,12 @@ function w3_open() {
 }
 
 // Close the sidenav with the close button
-function w3_close() {
+function menu_close() {
     mySidenav.style.display = "none";
 }
 </script>
 
-<!--
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBu-916DdpKAjTmJNIgngS6HL_kDIKU0aU&callback=myMap"></script>
-To use this code on your website, get a free API key from Google.
-Read more at: https://www.w3schools.com/graphics/google_maps_basic.asp
--->
+
 
 </body>
 </html>
