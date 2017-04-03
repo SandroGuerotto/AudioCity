@@ -126,6 +126,11 @@ h1 a,h2 a,h3 a,h4 a,h5 a,h6 a{font-weight:inherit}
 .discover-img{
 	width:100%;
 }
+
+.library-img{
+	width:10%;
+	float:left;
+}
 .discover-date{
 	float: right;;
 }
