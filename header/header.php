@@ -19,6 +19,8 @@
 
 	<!-- Script -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-	<script src="js/scroll.js"></script>
-	
+	<script src="js/scroll.js"  type="application/javascript"></script>
+    <script src="js/login.js"   type="application/javascript"></script>
+    <script src="js/menu.js"    type="application/javascript"></script>
+    <script src="js/search.js"  type="application/javascript"></script>
 </head>
