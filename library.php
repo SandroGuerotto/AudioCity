@@ -48,6 +48,8 @@ $currentUser = $session->getCurrentUser();
   </div>
 </div>
 
+
+
 <!-- Sidenav on small screens when clicking the menu icon -->
 <nav class="sidenav black card-2 animate-left hide-medium hide-large" style="display:none" id="mySidenav">
   <a href="javascript:void(0)" onclick="w3_close()" class="large padding-16">Close &times;</a>
@@ -64,12 +66,13 @@ $currentUser = $session->getCurrentUser();
 
 
 <!-- Music Section -->
-<div class="container padding-128" id="work">
+<div class="container padding-128" style="margin-left: 6em; margin-right: 6em; " id="work">
   <h3 class="center">MY MUSIC</h3>
 	 <?php include_once 'controller/LibrarySongs.php';
         $top = new LibrarySongs();
       foreach ($top->getToplist() as $item) {
 	  echo'<p>';
+		$musicitem = $top->getmusicitem();
         $htmlitem = $top->getHtmlItem();
         $htmlitem = str_replace("{id}", $item->getId(), $htmlitem);
         $htmlitem = str_replace("{album}", $item->getAlbum() == null ? "&nbsp;" : $item->getAlbum(), $htmlitem);
@@ -79,6 +82,7 @@ $currentUser = $session->getCurrentUser();
         $htmlitem = str_replace("{duration}", $item->getLengthFormatted(), $htmlitem);
         $htmlitem = str_replace("{release}", $item->getDate(), $htmlitem);
         echo $htmlitem;
+		echo $musicitem;
      echo'</p>';
       } ?>
 </div>
@@ -87,11 +91,8 @@ $currentUser = $session->getCurrentUser();
 
 
 
-
-
-
 <div id="modal01" class="modal black" onclick="this.style.display='none'">
-  <span class="closebtn text-white opacity hover-opacity-off xxlarge container display-topright" title="Close Modal Image">&times;</span>
+  <span class="closebtn text-white opacity hover-opacity-off xxlarge containerlibrary display-topright" title="Close Modal Image">&times;</span>
   <div class="modal-content animate-zoom center transparent padding-64">
     <img id="img01" class="image">
     <p id="caption" class="opacity large"></p>
