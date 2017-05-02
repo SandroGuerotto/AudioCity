@@ -39,7 +39,6 @@ class Song
         $this->album = $album;
         $this->length = $length;
         $this->date = date_format(new DateTime($date), 'd.m.Y');;
-//        $this->date = $date;
         $this->piclink = $piclink;
         $this->filelink = $filelink;
         $this->genre = $genre;
@@ -49,7 +48,7 @@ class Song
     /**
      * @return mixed
      */
-    public function getId()
+    public function getId() : int
     {
         return $this->id;
     }
@@ -57,7 +56,7 @@ class Song
     /**
      * @return mixed
      */
-    public function getName()
+    public function getName() :string
     {
         return $this->name;
     }
@@ -73,7 +72,7 @@ class Song
     /**
      * @return mixed
      */
-    public function getLength()
+    public function getLength() :string
     {
         return $this->length;
     }

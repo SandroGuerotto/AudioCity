@@ -44,7 +44,7 @@ img{margin-bottom:-5px}a{color:inherit}
 .btn,.btn-floating,.btn-floating-large,.closenav,.opennav,.btn-block,.button{-webkit-touch-callout:none;-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}   
 .btn-floating,.btn-floating-large{display:inline-block;text-align:center;color:#fff;background-color:#000;position:relative;overflow:hidden;z-index:1;padding:0;border-radius:50%;cursor:pointer;font-size:24px}
 .btn-floating{width:40px;height:40px;line-height:40px}.btn-floating-large{width:56px;height:56px;line-height:56px}
-.disabled,.btn:disabled,.button:disabled,.btn-floating:disabled,.btn-floating-large:disabled{cursor:not-allowed;opacity:0.3}.disabled *,:disabled *{pointer-events:none}
+.disabled,.btn:disabled,.button:disabled,.btn-floating:disabled,.btn-floating-large:disabled{opacity:0.3}.disabled *,:disabled *{pointer-events:none}
 .btn.disabled:hover,.btn-block.disabled:hover,.btn:disabled:hover,.btn-floating.disabled:hover,.btn-floating:disabled:hover,
 .btn-floating-large.disabled:hover,.btn-floating-large:disabled:hover{box-shadow:none}
 .btn-group .btn{float:left}.btn-block{width:100%}
@@ -121,6 +121,7 @@ input[type=checkbox].check:disabled+.validate,input[type=radio].radio:disabled+.
 .col.s11{width:91.66666%}
 .col.s12,.half,.third,.twothird,.threequarter,.quarter{width:99.99999%}
 @media (min-width:601px){
+.sixth{ width: 16.6666%}
 .col.m1{width:8.33333%}
 .col.m2{width:19.99999%}
 .col.m3,.quarter{width:24.99999%}
@@ -134,6 +135,7 @@ input[type=checkbox].check:disabled+.validate,input[type=radio].radio:disabled+.
 .col.m11{width:91.66666%}
 .col.m12{width:99.99999%}}
 @media (min-width:993px){
+.sixth{ width: 16.6666%}
 .col.l1{width:8.33333%}
 .col.l2{width:19.99999%}
 .col.l3,.quarter{width:24.99999%}
@@ -145,7 +147,8 @@ input[type=checkbox].check:disabled+.validate,input[type=radio].radio:disabled+.
 .col.l9,.threequarter{width:74.99999%}
 .col.l10{width:83.33333%}
 .col.l11{width:91.66666%}
-.col.l12{width:99.99999%}}
+.col.l12{width:99.99999%}
+.padding-top-128{ padding-top: 128px}}
 .content{max-width:980px;margin:auto}
 .rest{overflow:hidden}
 .layout-container,.cell-row{display:table;width:100%}.layout-row{display:table-row}.layout-cell,.layout-col,.cell{display:table-cell}
@@ -183,7 +186,7 @@ input[type=checkbox].check:disabled+.validate,input[type=radio].radio:disabled+.
 .round-small{border-radius:2px!important}.round,.round-medium{border-radius:4px!important}
 .round-large{border-radius:8px!important}.round-xlarge{border-radius:16px!important}
 .round-xxlarge{border-radius:32px!important}.round-jumbo{border-radius:64px!important}
-.border-0{border:0!important}.border{border:1px solid #ccc!important}
+.border-0{border:0!important}.border{border:1px solid #ccc}
 .border-top{border-top:1px solid #ccc!important}.border-bottom{border-bottom:1px solid #ccc!important}
 .border-left{border-left:1px solid #ccc!important}.border-right{border-right:1px solid #ccc!important}
 .margin{margin:16px!important}.margin-0{margin:0!important}
@@ -203,6 +206,7 @@ input[type=checkbox].check:disabled+.validate,input[type=radio].radio:disabled+.
 .padding-48{padding-top:48px!important;padding-bottom:48px!important}
 .padding-64{padding-top:64px!important;padding-bottom:64px!important}
 .padding-128{padding-top:128px!important;padding-bottom:128px!important}
+.login-padding-top-128{ padding-top: 128px}
 .padding-0{padding:0!important}
 .padding-top{padding-top:8px!important}.padding-bottom{padding-bottom:8px!important}
 .padding-left{padding-left:16px!important}.padding-right{padding-right:16px!important}
@@ -275,6 +279,7 @@ input[type=checkbox].check:disabled+.validate,input[type=radio].radio:disabled+.
 .dark-grey,.hover-dark-grey:hover,.dark-gray,.hover-dark-gray:hover{color:#fff;background-color:#616161}
 .dark-blue,.hover-dark-blue:hover{color:#000;background-color:#1F5673}
 .turquoise,.turquoise:hover{color:#fff;background-color:#90C3C8}
+.black,.hover-black:hover{color:#fff;background-color:#000}
 .text-indigo,.hover-text-indigo:hover{color:#3f51b5}
 .text-purple,.hover-text-purple:hover{color:#9c27b0}
 .text-light-blue,.hover-text-light-blue:hover{color:#87CEEB}
@@ -285,4 +290,4 @@ input[type=checkbox].check:disabled+.validate,input[type=radio].radio:disabled+.
 .text-light-grey,.hover-text-light-grey:hover,.text-light-gray,.hover-text-light-gray:hover{color:#f1f1f1}
 .text-dark-grey,.hover-text-dark-grey:hover,.text-dark-gray,.hover-text-dark-gray:hover{color:#3a3a3a}
 .text-dark-blue,.hover-text-dark-blue:hover{color:#1F5673}
-.text-turquoise,.text-turquoise:hover{color:#90C3C8}
+.text-turquoise,.hover-text-turquoise:hover{color:#90C3C8}

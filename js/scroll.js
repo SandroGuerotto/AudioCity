@@ -1,4 +1,5 @@
 $(document).ready(function(){
+
   // Add smooth scrolling to all links
   $("a").on('click', function(event) {
 
@@ -21,4 +22,14 @@ $(document).ready(function(){
       });
     } // End if
   });
+});
+
+$(window).scroll(function() {
+    var scroll = $(window).scrollTop();
+
+    if (scroll >= 300) {
+        $('#myNavbar').addClass('scrolling');
+    } else {
+        $('#myNavbar').removeClass('scrolling');
+    }
 });
