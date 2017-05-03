@@ -1,40 +1,44 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: Toshiki
- * Date: 21.03.2017
- * Time: 21:19
- */
-include_once "model/Song.php";
-class LibrarySongs
-{
-    private $toplist = array();
+include_once "../model/Song.php";
+include_once "../model/CustomSession.php";
+include_once "../model/User.php";
 
+class LibrarySongs{
+
+    private $list = array();
     /**
-     * TopSongs constructor.
+     * My Library constructor.
      */
-    public function __construct()
-    {
-
+    public function __construct() {
         $db_link = CustomSession::getInstance()->db_link->getDb_link();
         /* create a prepared statement */
-        $stmt = $db_link->prepare("SELECT * FROM musicfull GROUP BY id LIMIT 4");
+        $stmt = $db_link->prepare("SELECT * FROM userlib WHERE userid = ?");
+
+        $param =  CustomSession::getInstance()->getCurrentUser()->getId();
+        $stmt->bind_param("i", $param);
 
         /* execute query */
         $stmt->execute();
 
         /* bind result variables */
-        $stmt->bind_result($id, $name, $album, $length, $date, $piclink, $filelink, $genre, $artist );
+        $stmt->bind_result($id, $name, $album, $length, $date, $piclink, $filelink, $genre, $artist, $libid, $inserdate, $userid );
 
         /* fetch value */
         while ($stmt->fetch()){
             $song = new Song($id, $name, $album, $length, $date, $piclink, $filelink, $genre, $artist);
-            array_push($this->toplist, $song);
+            array_push($this->list, $song);
         }
 
         /* close connection */
         $db_link->close();
+    }
+
+    /**
+     * @return array
+     */
+    public function getToplist() : array {
+        return $this->list;
     }
 	
 	public function playSound()
@@ -50,32 +54,22 @@ class LibrarySongs
                   embed.parentNode.removeChild(embed);
               }*/
 	}
-
-
-    /**
-     * @return mixed
-     */
-    public function getToplist()
-    {
-        return $this->toplist;
-    }
-
     public function getHtmlItem(){
-        $htmlitem = '<p><audio id="music" src="test.mp3"></audio><div style="padding-left: 6em; padding-right: 6em"><div class="lineBorderImage"><div class="image-container"><img id="image" src="{piclink}" class="library-img" alt="{album} Cover"></img><div id="playdiv" class="after"  onclick="startmusic(event)"><div id="myBar"></div></div></div><div class="container" style="display: inline-block;"><h3>{titel} - {artist}</h3><p class="opacity">{album}</p><p><span>Länge: {duration}</span><span class="discover-date" style="margin-left: 1em;">Erscheinung: {release}</span></p></div></div></div></p>';
+        $htmlitem = '<p><div style="padding-left: 6em; padding-right: 6em"><div class="lineBorderImage"><div class="image-container"><audio id="music" src="test.mp3"></audio><img id="image" src="{piclink}" class="library-img" alt="{album} Cover"></img><div id="playdiv" class="after"  onclick="startmusic(event)"><div id="myBar"></div></div></div><div class="container" style="display: inline-block;"><h3 id="texttitle">{titel} - {artist}</h3><p class="opacity">{album}</p><p><span>Länge: {duration}</span><span class="discover-date" style="margin-left: 1em;">Erscheinung: {release}</span></p></div></div></div></p>';
         return$htmlitem;
     }
-	
-	public function getmusicitem(){
-		$musicitem = '<div id="controlMusic" class="bottom" style="background-color:white">
-		<div class="bar" style="float: left;"><img src="music/Chantaje/cover.jpg" id="musicimage" class="music-container" style="margin: 5px"></img>
-		<div style="margin-left: 6px; float: left; width:90%;"> <p>Name of the song</p><div id="musicdiv" class="musicprogress"><div id="musicbar"></div></div></div>
-		</div>
-		</div>';
-		return$musicitem;
-	}
+
 }?>
 
 <script>
+$('.image-container').on('click', function () {
+  var imageaudio = $(this).parent().find('img').get(0);
+
+	d = new Date();  // if you restructure your HTML this has to change
+  $("#musicimage").attr("src", imageaudio.src + "?"+d.getTime() );
+
+});
+
 
 function startmusic(e)
 {
@@ -84,22 +78,17 @@ function startmusic(e)
 	var elem = document.getElementById("myBar"); 	
 	var element = document.getElementById("musicbar"); 
 	
-	 element.style.width = "20%";  
-	 element.style.background = "red";
-	 alert($('#musicimage'));
-	 $('#musicimage').hide();
+	 
   var width = audio.currentTime / audio.duration;
-  var id = setInterval(frame, 1000);
-  music();
+  var id = setInterval(frame, 1);
   function frame() {
     if (width >= 100) {
       clearInterval(id);
     } else {
       width = (audio.currentTime / audio.duration) * 100;
       elem.style.width = width + '%';  
-	  d = new Date();
-	//$("#musicimage").attr("src", "play.png?"+d.getTime() );
-	    
+	 element.style.width = width + '%';  
+	   
     }
   }
 	 if(audio.paused){
