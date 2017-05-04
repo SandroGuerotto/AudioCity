@@ -15,6 +15,8 @@ function menu_close() {
 }
 // navigate to next requested page
 function activateTab(contentPath){
+    console.log(contentPath);
+    console.log(window.location.pathname);
     if(contentPath == 'view/HomeView.php'){
         $('#home').load('view/header_img.html');
         $('#myNavbar').removeClass('white');
@@ -23,10 +25,49 @@ function activateTab(contentPath){
         $('#home').hide();
         $('#myNavbar').addClass('white');
     }
-    $('#mainContent').load(contentPath).hide().fadeIn(500);
+    // $('#mainContent').load(contentPath).hide().fadeIn(500);
+    $('#mainContent').load(window.location.pathname == '/audiocity' ? '/audiocity/'+ contentPath : contentPath).hide().fadeIn(500);
+    // $("#mainContent").load(contentPath, {limit: 25},
+    //     function (responseText, textStatus, req) {
+    //         if (textStatus == "error") {
+    //             $("#mainContent").load('/audiocity/'+contentPath).hide().fadeIn(500);
+    //             textStatus = 'success';
+    //         }
+    //     }).hide().fadeIn(500);
+
+    rewriteURL(contentPath);
+
 }
-// default starting script when loading index page
-$(function() {
-    $('#home').load('view/header_img.html');
-    activateTab('view/HomeView.php');
-});
+
+function  rewriteURL(path) {
+    switch (path){
+        case "view/LoginView.php":
+            window.history.pushState("", "", '/audiocity/login');
+            break;
+        case "view/RegisterView.php":
+            window.history.pushState("", "", '/audiocity/register');
+            break;
+        case "view/DiscoverView.php":
+            window.history.pushState("", "", '/audiocity/discover');
+            break;
+        case "view/LibView.php":
+            window.history.pushState("", "", '/audiocity/mymusic');
+            break;
+        case "view/HomeView.php":
+            window.history.pushState("", "", '/audiocity');
+            break;
+        // case "/audiocity/register":
+        //     activateTab("view/RegisterView.php");
+        //     break;
+        // case "/audiocity/discover":
+        //     activateTab("view/DiscoverView.php");
+        //     break;
+        // case "/audiocity/mymusic":
+        //     activateTab("view/LibView.php");
+        //     break;
+        // default:
+        //     activateTab("view/HomeView.php");
+        //     break;
+    }
+
+}

@@ -71,5 +71,8 @@ function register() {
 }
 
 function loginStatusChanged() {
-  location.reload();
+    window.location.pathname = '/audiocity';
+    console.log(window.location.pathname);
+    location.reload(true);
+    console.log(window.location.pathname);
 }

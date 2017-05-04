@@ -131,6 +131,12 @@ h1 a,h2 a,h3 a,h4 a,h5 a,h6 a{font-weight:inherit}
 	background-color: white;
 	color:#000;
 }
+.pointer{
+	cursor: pointer;
+}
+.link{
+	cursor: pointer;
+}
 .link:hover{
 	text-decoration: underline;
 }

@@ -46,7 +46,7 @@ class TopSongs
     }
 
     public function getHtmlItem() : string {
-        $htmlitem = '<div class="col l3 m6 margin-bottom"><a href="lib/?id={id}"><div class="card-2 grayscale-40"><img src="{piclink}" class="discover-img" alt="{album} Cover"><div class="container"><h3>{titel} - {artist}</h3><p class="opacity">{album}</p><p><span>Länge: {duration}</span><span class="discover-date">Erschien: {release}</span></p></div></div></a></div>';
+        $htmlitem = '<div class="col l3 m6 margin-bottom"><a href="lib/?id={id}"><div class="card-2 grayscale-40"><img src="audiocity/{piclink}" class="discover-img" alt="{album} Cover"><div class="container"><h3>{titel} - {artist}</h3><p class="opacity">{album}</p><p><span>Länge: {duration}</span><span class="discover-date">Erschien: {release}</span></p></div></div></a></div>';
         return $htmlitem;
     }
 }

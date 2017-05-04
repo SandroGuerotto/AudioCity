@@ -70,7 +70,7 @@ ul.ul{list-style-type:none;padding:0;margin:0}ul.ul li{padding:6px 2px 6px 16px;
 {-webkit-transition:background-color .25s,color .15s,box-shadow .25s,opacity 0.25s,filter 0.25s,border 0.15s;transition:background-color .25s,color .15s,box-shadow .15s,opacity .25s,filter .25s,border .15s}
 .ripple:active{opacity:0.5}.ripple{-webkit-transition:opacity 0s;transition:opacity 0s}
 .sidenav,.sidebar{height:100%;width:200px;background-color:#fff;position:fixed!important;z-index:1;overflow:auto}
-.sidenav a,.navblock a{padding:4px 2px 4px 16px}.sidenav a:hover,.navblock a:hover{background-color:#ccc;color:#000}.sidenav a,.dropnav a,.navblock a{display:block}
+.sidenav span,.navblock span{padding:4px 2px 4px 16px}.sidenav span:hover,.navblock span:hover{background-color:#ccc;color:#000}.sidenav span,.dropnav span,.navblock span{display:block}
 .sidenav .dropdown-hover:hover,.sidenav .dropdown-hover:first-child,.sidenav .dropdown-click:hover,.dropnav a:hover{background-color:#ccc;color:#000}
 .sidenav .dropdown-hover,.sidenav .dropdown-click,.bar-block .dropdown-hover,.bar-block .dropdown-click{width:100%}
 .sidenav .dropdown-hover .dropdown-content,.sidenav .dropdown-click .dropdown-content,.bar-block .dropdown-hover .dropdown-content,.bar-block .dropdown-click .dropdown-content{min-width:100%}

@@ -130,7 +130,7 @@ class SearchSongs{
 
 }
 class Genre{
-    private  $id;
+    private $id;
     private $name;
 
     /**

@@ -1,47 +1,47 @@
-<div class="padding-128 center" id="lib">
-    <div class="container padding-32 white">
-        <div class="third">&nbsp;</div>
-        <div class="row-padding third center" style="margin-top:64px">
-            <h3>Musik Bibliothek</h3>
-            <form onsubmit="searchByText(); return false;" method="get" action="javascript:void(0);" name="searchForm" id="searchForm">
-                <p><input type="search" name="search" id="search" class="input border" placeholder="Suche" ></p>
-            </form>
-        </div>
-        <div class="third">&nbsp;</div>
+<!-- Music Section -->
 
-    </div>
-    <div class="left-align">
-        <div id="grid" class="container padding-32 white">
-            <?php include_once '../controller/SearchSongs.php';
-            $search = new SearchSongs();
-            $search->getGenre();
-            foreach ($search->getGenreList() as $genre) {
-                $songs = $search->getSong($genre);
-                if (count($songs) == 0){
-                    continue;
-                }
-                echo ' <div class="row-padding ">';
-                echo '<h2 class="margin-left">'.$genre->getName().'</h2>';
+<div class="container padding-128 white" id="work">
+    <h3 class="center">MY MUSIC</h3>
+    <?php include_once '../controller/LibrarySongs.php';
+          include_once "../model/CustomSession.php";
+    if (CustomSession::getInstance()->getCurrentUser() === null){?>
+        <p class="center">Um deine Playlist abzurufen musst du eingeloggt sein. <br>
+            Hier gehts zum Login: <span class="text-dark-blue link " onclick="activateTab('view/LoginView.php')">Anmelden</span><br>
+            Noch keinen Account? <span class="text-dark-blue link " onclick="activateTab('view/RegisterView.php')">Registrieren</span>
+        </p>
+       <?php return;
+    }
 
-                foreach ($songs as $song){
-                    echo $search->getHtmlItem2($song, 'sixth');
-                }
-                echo '</div>';
-            }
-            $search->close()?>
+    $lib = new LibrarySongs();
+    foreach ($lib->getToplist() as $item) {
+        echo'<p>';
+        $htmlitem = $lib->getHtmlItem();
+        $htmlitem = str_replace("{id}", $item->getId(), $htmlitem);
+        $htmlitem = str_replace("{album}", $item->getAlbum() == null ? "&nbsp;" : $item->getAlbum(), $htmlitem);
+        $htmlitem = str_replace("{piclink}", $item->getPiclink(), $htmlitem);
+        $htmlitem = str_replace("{titel}", $item->getName(), $htmlitem);
+        $htmlitem = str_replace("{artist}", $item->getArtist(), $htmlitem);
+        $htmlitem = str_replace("{duration}", $item->getLengthFormatted(), $htmlitem);
+        $htmlitem = str_replace("{release}", $item->getDate(), $htmlitem);
+        echo $htmlitem;
+        echo'</p>';
+    } ?>
+</div>
 
-    </div>
+<div id="modal01" class="modal black" onclick="this.style.display='none'">
+    <span class="closebtn text-white opacity hover-opacity-off xxlarge container display-topright" title="Close Modal Image">&times;</span>
+    <div class="modal-content animate-zoom center transparent padding-64">
+        <img id="img01" class="image">
+        <p id="caption" class="opacity large"></p>
     </div>
 </div>
 
-<!-- Footer -->
-<footer class="center padding-64">
-    <a href="#lib" class="button"><i class="fa fa-arrow-up margin-right"></i>To the top</a>
-    <div class="xlarge text-white section">
-        <i class="fa fa-facebook-official hover-text-indigo"></i>
-        <i class="fa fa-instagram hover-text-purple"></i>
-        <i class="fa fa-twitter hover-text-light-blue"></i>
-    </div>
-</footer>
+<script>
 
-
+    function onClick(element) {
+        document.getElementById("img01").src = element.src;
+        document.getElementById("modal01").style.display = "block";
+        var captionText = document.getElementById("caption");
+        captionText.innerHTML = element.alt;
+    }
+</script>
