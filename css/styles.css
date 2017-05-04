@@ -146,9 +146,96 @@ h1 a,h2 a,h3 a,h4 a,h5 a,h6 a{font-weight:inherit}
 }
 
 .library-img{
-	width:10%;
-	float:left;
+	width:100%;
+	height: 100%;
+
 }
+
+
+
+.image-container {
+	float: left;
+	display:block;
+    position: relative;
+    width: 10.4%;
+    height: 10.4%;
+}
+
+.music-container {
+	float: left;
+	display:block;
+    position: relative;
+    width: 6.5%;
+    height: 6.5%;
+}
+
+.musicprogress{
+	border-radius: 25px;
+	height: 5px;
+	border:1px solid green;
+}
+
+.control-container{
+	float: left;
+	display:block;
+    position: relative;
+    width: 5.0%;
+    height: 5.0%;
+}
+.image-container .after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    color: #FFF;
+	
+}
+.image-container:hover .after {
+	display:block;
+    background: rgba(0, 0, 0, .25) url("../images/play.png") no-repeat center;
+	background-size: 80px 80px;
+	-webkit-animation: fadein .5s; /* Safari, Chrome and Opera > 12.1 */
+    -moz-animation: fadein .5s; /* Firefox < 16 */
+    -ms-animation: fadein .5s; /* Internet Explorer */
+    -o-animation: fadein .5s; /* Opera < 12.1 */
+    animation: fadein .5s;
+
+}
+
+#musicControll{
+ background: rgba(255, 255, 255, .25);
+}
+
+#musicbar{
+	width: 0;
+    height: 3.5px;
+	display:block;
+    background-color: green;
+	position: static; 
+	bottom: 0;
+}
+
+#myBar {
+    width: 1%;
+    height: 3.5px;
+    background-color: green;
+	position: absolute; 
+	bottom: 0;
+}
+
+*::selection 
+{
+    background-color:transparent;
+} 
+*::-moz-selection
+{
+    background-color:transparent;
+}
+*
+
+
 .discover-date{
 	float: right;;
 }

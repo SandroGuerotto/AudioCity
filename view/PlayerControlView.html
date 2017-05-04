@@ -1,0 +1,20 @@
+<div id="controlMusic" class="bottom white" style="display: none">
+    <audio id="music" preload="auto" src="" type="audio/mp3" current=""></audio>
+    <div class="bar" style="float: left;">
+        <img src="" id="musicimage" class="music-container" style="margin: 5px"/>
+        <div style="margin-left: 6px; float: left; width:60%;  margin-right: 20px">
+            <p id="songname">Name of the song</p>
+            <div id="musicdiv" class="musicprogress">
+                <div id="musicbar"></div>
+            </div>
+        </div>
+        <div style="margin-top:35px" class="center">
+            <i class="fa fa-step-backward" style="font-size: 40px;"></i>
+            <i class="fa fa-backward" style="font-size: 40px;"></i>
+            <i class="fa fa-play-circle-o" style="font-size: 50px;" onclick="playmusic()" class="pointer"></i>
+            <i class="fa fa-forward" style="font-size: 40px;"></i>
+            <i class="fa fa-step-forward" style="font-size: 40px;"></i>
+            <i class="fa fa-times" style="font-size: 40px;" onclick="close_player()"></i>
+        </div>
+    </div>
+</div>
