@@ -10,7 +10,6 @@
 
     $lib = new LibrarySongs();
     foreach ($lib->getList() as $item) {
-        echo'<p>';
         $htmlitem = $lib->getHtmlItem();
         $htmlitem = str_replace("{id}", $item->getId(), $htmlitem);
         $htmlitem = str_replace("{album}", $item->getAlbum() == null ? "&nbsp;" : $item->getAlbum(), $htmlitem);
@@ -22,7 +21,6 @@
         $htmlitem = str_replace("{release}", $item->getDate(), $htmlitem);
         echo $htmlitem;
 
-        echo'</p>';
     }
     $lib->close();
     ?>

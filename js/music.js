@@ -15,7 +15,7 @@ function startmusic(e) {
     var data_new = src.split(';');
 	for (i = 0; i < $("div.playlist-control").length; i++) { 
 	var mssrc = $("div.playlist-control")[i].getAttribute( "data-src" ).split(';');
-    musiclist.push(mssrc[0]);
+        musiclist.push(mssrc[0]);
 	}
 	
 
@@ -36,13 +36,11 @@ function startmusic(e) {
     if(audiostream.paused){
         audiostream.play();
         e.target.style.backgroundImage="url(images/pause.png)";
-		$("#playicon").removeClass("fa fa-play-circle-o");
-		$("#playicon").addClass("fa fa-stop-circle-o");
+        $("#controlMusic").find(".fa-play-circle-o").addClass("fa-pause-circle-o").removeClass("fa-play-circle-o");
     }else{
         audiostream.pause();
         e.target.style.backgroundImage="url(images/play.png)";
-		$("#playicon").removeClass("fa fa-stop-circle-o");
-		$("#playicon").addClass("fa fa-play-circle-o");
+        $("#controlMusic").find(".fa-pause-circle-o").addClass("fa-play-circle-o").removeClass("fa-pause-circle-o");
     }
 
     var width = audiostream.currentTime / audiostream.duration;
@@ -71,13 +69,11 @@ function playmusic(){
     if(audiostream.paused){
         audiostream.play();
         $('#overlay-' + $('#music').attr("current")).css('backgroundImage',"url(images/pause.png)");
-		$("#playicon").removeClass("fa fa-play-circle-o");
-		$("#playicon").addClass("fa fa-stop-circle-o");
+        $("#controlMusic").find(".fa-play-circle-o").addClass("fa-pause-circle-o").removeClass("fa-play-circle-o");
     }else{
         audiostream.pause();
         $('#overlay-' + $('#music').attr("current")).css('backgroundImage',"url(images/play.png)");
-		$("#playicon").removeClass("fa fa-stop-circle-o");
-		$("#playicon").addClass("fa fa-play-circle-o");
+        $("#controlMusic").find(".fa-pause-circle-o").addClass("fa-play-circle-o").removeClass("fa-pause-circle-o");
     }
 }
 function formatTime(seconds) {
@@ -86,60 +82,57 @@ function formatTime(seconds) {
     seconds = Math.floor(seconds % 60);
     seconds = (seconds >= 10) ? seconds : "0" + seconds;
     return minutes + ":" + seconds;
-  }
+}
 function secondsback(){
-	$('#music').get(0).currentTime = $('#music').get(0).currentTime - 10;
+	$('#music').get(0).currentTime = $('#music').get(0).currentTime - 5;
 }
 
 function secondsforward(){
-	$('#music').get(0).currentTime = $('#music').get(0).currentTime + 10;
+	$('#music').get(0).currentTime = $('#music').get(0).currentTime + 5;
 }
   
 function next(){
-   $('div.playlist-control').css('backgroundImage',"url(images/play.png)");
-   $('#overlay-' + $('#music').attr("current")).css('backgroundImage',"url(images/pause.png)");
-   $('#music').get(0).pause();
-   var musicindex = musiclist.indexOf($('#music').get(0).getAttribute('src'));
-   console.log(musicindex);
-   console.log(musiclist.length);
-  if(musicindex == musiclist.length - 1){
-  var musicimage = $("div.playlist-control")[0].getAttribute( "data-src" ).split(';');
-   $("#musicimage").attr("src", musicimage[1] + "?" + new Date().getTime() );
-  $('#music').get(0).setAttribute("src", musiclist[0]);
-  $('#music').get(0).play();
-  $("#playicon").removeClass("fa fa-play-circle-o");
-  $("#playicon").addClass("fa fa-stop-circle-o");
-  }else{
-  var musicimage = $("div.playlist-control")[musicindex + 1].getAttribute( "data-src" ).split(';');
-  console.log(musicimage);
-  $('#music').get(0).setAttribute("src", musiclist[musicindex + 1]);
-  $("#musicimage").attr("src", musicimage[1] + "?" + new Date().getTime() );
-  $('#music').get(0).play();
-  $("#playicon").removeClass("fa fa-play-circle-o");
-  $("#playicon").addClass("fa fa-stop-circle-o");
-  }
+    $('div.playlist-control').css('backgroundImage',"url(images/play.png)");
+    $('#overlay-' + $('#music').attr("current")).css('backgroundImage',"url(images/pause.png)");
+    $('#music').get(0).pause();
+    var musicindex = musiclist.indexOf($('#music').get(0).getAttribute('src'));
+    console.log(musicindex);
+    console.log(musiclist.length);
+    if(musicindex == musiclist.length - 1){
+        var musicimage = $("div.playlist-control")[0].getAttribute( "data-src" ).split(';');
+        $("#musicimage").attr("src", musicimage[1] + "?" + new Date().getTime() );
+        $('#music').get(0).setAttribute("src", musiclist[0]);
+        $('#music').get(0).play();
+        // $("#controlMusic").find(".fa-pause-circle-o").addClass("fa-play-circle-o").removeClass("fa-pause-circle-o");
+    }else{
+        var musicimage = $("div.playlist-control")[musicindex + 1].getAttribute( "data-src" ).split(';');
+        console.log(musicimage);
+        $('#music').get(0).setAttribute("src", musiclist[musicindex + 1]);
+        $("#musicimage").attr("src", musicimage[1] + "?" + new Date().getTime() );
+        $('#music').get(0).play();
+        $("#controlMusic").find(".fa-play-circle-o").addClass("fa-pause-circle-o").removeClass("fa-play-circle-o");
+    }
 }
 
 function previous(){
-$('div.playlist-control').css('backgroundImage',"url(images/play.png)");
-   $('#overlay-' + $('#music').attr("current")).css('backgroundImage',"url(images/pause.png)");
-   $('#music').get(0).pause();
-   var musicindex = musiclist.indexOf($('#music').get(0).getAttribute('src'));
-  if(musicindex == 0){
-  var musicimage = $("div.playlist-control")[musiclist.length - 1].getAttribute( "data-src" ).split(';');
-   $("#musicimage").attr("src", musicimage[1] + "?" + new Date().getTime() );
-  $('#music').get(0).setAttribute("src", musiclist[musiclist.length - 1]);
-  $('#music').get(0).play();
-  $("#playicon").removeClass("fa fa-play-circle-o");
-  $("#playicon").addClass("fa fa-stop-circle-o");
-  }else{
-  var musicimage = $("div.playlist-control")[musicindex - 1].getAttribute( "data-src" ).split(';');
-  $('#music').get(0).setAttribute("src", musiclist[musicindex - 1]);
-  $("#musicimage").attr("src", musicimage[1] + "?" + new Date().getTime() );
-  $('#music').get(0).play();
-  $("#playicon").removeClass("fa fa-play-circle-o");
-  $("#playicon").addClass("fa fa-stop-circle-o");
-  }
+    $('div.playlist-control').css('backgroundImage',"url(images/play.png)");
+    $('#overlay-' + $('#music').attr("current")).css('backgroundImage',"url(images/pause.png)");
+    $('#music').get(0).pause();
+    var musicindex = musiclist.indexOf($('#music').get(0).getAttribute('src'));
+    if(musicindex == 0){
+        var musicimage = $("div.playlist-control")[musiclist.length - 1].getAttribute( "data-src" ).split(';');
+        $("#musicimage").attr("src", musicimage[1] + "?" + new Date().getTime() );
+        $('#music').get(0).setAttribute("src", musiclist[musiclist.length - 1]);
+        $('#music').get(0).play();
+        // $("#playicon").removeClass("fa fa-play-circle-o");
+        // $("#playicon").addClass("fa fa-stop-circle-o");
+    }else{
+        var musicimage = $("div.playlist-control")[musicindex - 1].getAttribute( "data-src" ).split(';');
+        $('#music').get(0).setAttribute("src", musiclist[musicindex - 1]);
+        $("#musicimage").attr("src", musicimage[1] + "?" + new Date().getTime() );
+        $('#music').get(0).play();
+        $("#controlMusic").find(".fa-play-circle-o").addClass("fa-pause-circle-o").removeClass("fa-play-circle-o");
+    }
 
 }
 
@@ -186,4 +179,8 @@ function delFromLib(musicid) {
 
         }
     });
+}
+function removeFromList(musicid) {
+    console.log(musicid);
+    $('#main-container-'+musicid).fadeOut(800, function() { $(this).remove(); })
 }

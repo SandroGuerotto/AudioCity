@@ -16,7 +16,9 @@ class SearchSongs{
     public function __construct() {
 
         $this->db_link = CustomSession::getInstance()->db_link->getDb_link();
-        $this->getPlaylist();
+        if (CustomSession::getInstance()->getCurrentUser() != null){
+            $this->getPlaylist();
+        }
     }
 
     /**

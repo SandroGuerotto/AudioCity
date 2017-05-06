@@ -172,8 +172,7 @@ h1 a,h2 a,h3 a,h4 a,h5 a,h6 a{font-weight:inherit}
 	float: left;
 	display:block;
     position: relative;
-    width: 6.5%;
-    height: 6.5%;
+    width: 3.5%;
 }
 
 .musicprogress{
@@ -188,6 +187,11 @@ h1 a,h2 a,h3 a,h4 a,h5 a,h6 a{font-weight:inherit}
     position: relative;
     width: 5.0%;
     height: 5.0%;
+}
+.playlist-item-wrapper{
+	padding-left: 6em;
+	padding-right: 6em;
+	margin-bottom: 2.5em;
 }
 .image-container .playlist-control {
     position: absolute;
