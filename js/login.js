@@ -28,9 +28,10 @@ function login() {
 }
 
 function logout() {
+    var path = window.location.pathname == '/audiocity' ? '/audiocity/'+ 'input/LogoutInput.php' : 'input/LogoutInput.php';
     $.ajax({
         type: 'POST',
-        url: 'input/LogoutInput.php',
+        url: path,
         success: function (data) {
             loginStatusChanged();
         }
@@ -71,8 +72,5 @@ function register() {
 }
 
 function loginStatusChanged() {
-    window.location.pathname = '/audiocity';
-    console.log(window.location.pathname);
     location.reload(true);
-    console.log(window.location.pathname);
 }

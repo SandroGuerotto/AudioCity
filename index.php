@@ -42,6 +42,6 @@ $currentUser = $session->getCurrentUser();
 <!-- content will be loaded in here -->
 <div id="mainContent">
 </div>
-
+    <?php include_once "view/PlayerControlView.html"; ?>
 </body>
 </html>

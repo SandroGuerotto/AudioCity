@@ -1,3 +1,11 @@
+<?php
+include_once "../model/CustomSession.php";
+if (CustomSession::getInstance()->getCurrentUser() != null ){
+    echo '<script> activateTab("view/LibView.php")</script> ';
+    return;
+}
+?>
+
 <div class="padding-top-128 center">
     <div class="container padding-32 light-gray">
         <div class="third">&nbsp;</div>

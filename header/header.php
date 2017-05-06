@@ -24,4 +24,5 @@
     <script src="js/login.js"       type="application/javascript"></script>
     <script src="js/menu.js"        type="application/javascript"></script>
     <script src="js/search.js"      type="application/javascript"></script>
+    <script src="js/music.js"      type="application/javascript"></script>
 </head>
