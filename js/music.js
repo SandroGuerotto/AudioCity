@@ -2,12 +2,11 @@
 var musiclist = new Array();
 var data_new_img;	
 var imagelist = new Array();
-
+var musicidlist = new Array();
 
 function startmusic(e) {
  var audiostream = $('#music').get(0);
 	var time = $('tracktime');
-
 	musiclist = [];
 	time.css("margin-top",(time.parent()
             .height() - time.parent().height())/2 - 20 + 'px' )
@@ -18,6 +17,7 @@ function startmusic(e) {
 	var mssrc = $("div.playlist-control")[i].getAttribute( "data-src" ).split(';');
         musiclist.push(mssrc[0]);
 		imagelist.push(mssrc[1]);
+		musicidlist.push(mssrc[3]);
 	}
 	
 
@@ -49,7 +49,7 @@ function startmusic(e) {
     var id = setInterval(frame, 1);
     function frame() {
         if (width >= 100) {
-            clearInterval(id);
+			clearInterval(id);          
         } else {
             width = (audiostream.currentTime / audiostream.duration) * 100;
             $('#musicbar').width( width + '%');
@@ -94,8 +94,12 @@ function secondsforward(){
 }
   
 function next(){
+try{
+$('div.playlist-control').css('backgroundImage',"url(images/play.png)");
+}catch(err){
+
+}
     $('div.playlist-control').css('backgroundImage',"url(images/play.png)");
-    $('#overlay-' + $('#music').attr("current")).css('backgroundImage',"url(images/pause.png)");
     $('#music').get(0).pause();
     var musicindex = musiclist.indexOf($('#music').get(0).getAttribute('src'));
     console.log(musicindex);
@@ -103,14 +107,16 @@ function next(){
     if(musicindex == musiclist.length - 1){
 	var imagepath = window.location.pathname == '/audiocity'? '/audiocity/' + imagelist[0]:  imagelist[0];
 	var musicpath = window.location.pathname == '/audiocity'? '/audiocity/' + musiclist[0]:  musiclist[0];
-       $("#musicimage").attr("src", imagepath + "?" + new Date().getTime());
-        $('#music').get(0).setAttribute("src", musicpath);
+		$("#overlay-" + musicidlist[0]).css('backgroundImage',"url(images/pause.png)");
+		$("#musicimage").attr("src", imagepath + "?" + new Date().getTime());
+        $('#music').get(0).setAttribute("src", musicpath + "?" + new Date().getTime());
         $('#music').get(0).play();
         // $("#controlMusic").find(".fa-pause-circle-o").addClass("fa-play-circle-o").removeClass("fa-pause-circle-o");
     }else{
 	var imagepath = window.location.pathname == '/audiocity'? '/audiocity/' + imagelist[musicindex + 1]:  imagelist[musicindex + 1];
 	var musicpath = window.location.pathname == '/audiocity'? '/audiocity/' + musiclist[musicindex + 1]:  musiclist[musicindex + 1];
-        $('#music').get(0).setAttribute("src", musicpath);
+		$("#overlay-" + musicidlist[musicindex + 1]).css('backgroundImage',"url(images/pause.png)");
+        $('#music').get(0).setAttribute("src", musicpath + "?" + new Date().getTime());
         $("#musicimage").attr("src", imagepath + "?" + new Date().getTime() );
         $('#music').get(0).play();
         $("#controlMusic").find(".fa-play-circle-o").addClass("fa-pause-circle-o").removeClass("fa-play-circle-o");
@@ -125,15 +131,17 @@ function previous(){
     if(musicindex == 0){
 		var imagepath = window.location.pathname == '/audiocity'? '/audiocity/' + imagelist[musiclist.length - 1]:  imagelist[musiclist.length - 1];
 		var musicpath = window.location.pathname == '/audiocity'? '/audiocity/' + musiclist[musiclist.length - 1]:  musiclist[musiclist.length - 1];
+		$("#overlay-" + musicidlist[musiclist.length - 1]).css('backgroundImage',"url(images/pause.png)");
         $("#musicimage").attr("src", imagepath + "?" + new Date().getTime() );
-        $('#music').get(0).setAttribute("src", musicpath);
+        $('#music').get(0).setAttribute("src", musicpath + "?" + new Date().getTime());
         $('#music').get(0).play();
         // $("#playicon").removeClass("fa fa-play-circle-o");
         // $("#playicon").addClass("fa fa-stop-circle-o");
     }else{
 	var imagepath = window.location.pathname == '/audiocity'? '/audiocity/' + imagelist[musicindex - 1]:  imagelist[musicindex - 1];
 	var musicpath = window.location.pathname == '/audiocity'? '/audiocity/' + musiclist[musicindex - 1]:  musiclist[musicindex - 1];
-        $('#music').get(0).setAttribute("src", musicpath);
+		$("#overlay-" + musicidlist[musicindex - 1]).css('backgroundImage',"url(images/pause.png)");
+        $('#music').get(0).setAttribute("src", musicpath + "?" + new Date().getTime());
         $("#musicimage").attr("src", imagepath + "?" + new Date().getTime() );
         $('#music').get(0).play();
         $("#controlMusic").find(".fa-play-circle-o").addClass("fa-pause-circle-o").removeClass("fa-play-circle-o");
