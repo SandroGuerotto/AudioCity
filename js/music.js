@@ -7,7 +7,7 @@ function startmusic(e) {
  var audiostream = $('#music').get(0);
 	var time = $('tracktime');
 
-	
+	musiclist = [];
 	time.css("margin-top",(time.parent()
             .height() - time.parent().height())/2 - 20 + 'px' )
     // init global infos
@@ -100,19 +100,23 @@ function next(){
    $('#overlay-' + $('#music').attr("current")).css('backgroundImage',"url(images/pause.png)");
    $('#music').get(0).pause();
    var musicindex = musiclist.indexOf($('#music').get(0).getAttribute('src'));
+   console.log(musicindex);
+   console.log(musiclist.length);
   if(musicindex == musiclist.length - 1){
   var musicimage = $("div.playlist-control")[0].getAttribute( "data-src" ).split(';');
    $("#musicimage").attr("src", musicimage[1] + "?" + new Date().getTime() );
   $('#music').get(0).setAttribute("src", musiclist[0]);
   $('#music').get(0).play();
-  $("#playicon").removeClass("fa fa-stop-circle-o");
+  $("#playicon").removeClass("fa fa-play-circle-o");
+  $("#playicon").addClass("fa fa-stop-circle-o");
   }else{
   var musicimage = $("div.playlist-control")[musicindex + 1].getAttribute( "data-src" ).split(';');
+  console.log(musicimage);
   $('#music').get(0).setAttribute("src", musiclist[musicindex + 1]);
   $("#musicimage").attr("src", musicimage[1] + "?" + new Date().getTime() );
-  console.log(musicimage);
   $('#music').get(0).play();
-  $("#playicon").removeClass("fa fa-stop-circle-o");
+  $("#playicon").removeClass("fa fa-play-circle-o");
+  $("#playicon").addClass("fa fa-stop-circle-o");
   }
 }
 
@@ -126,12 +130,15 @@ $('div.playlist-control').css('backgroundImage',"url(images/play.png)");
    $("#musicimage").attr("src", musicimage[1] + "?" + new Date().getTime() );
   $('#music').get(0).setAttribute("src", musiclist[musiclist.length - 1]);
   $('#music').get(0).play();
+  $("#playicon").removeClass("fa fa-play-circle-o");
+  $("#playicon").addClass("fa fa-stop-circle-o");
   }else{
   var musicimage = $("div.playlist-control")[musicindex - 1].getAttribute( "data-src" ).split(';');
   $('#music').get(0).setAttribute("src", musiclist[musicindex - 1]);
   $("#musicimage").attr("src", musicimage[1] + "?" + new Date().getTime() );
-  console.log(musicimage);
   $('#music').get(0).play();
+  $("#playicon").removeClass("fa fa-play-circle-o");
+  $("#playicon").addClass("fa fa-stop-circle-o");
   }
 
 }
