@@ -26,7 +26,7 @@ function activateTab(contentPath){
 
     $('#mainContent').load(window.location.pathname == '/audiocity' ? '/audiocity/'+ contentPath : contentPath).hide().fadeIn(500);
     rewriteURL(contentPath);
-
+    $('html,body').scrollTop(0);
 }
 
 function  rewriteURL(path) {

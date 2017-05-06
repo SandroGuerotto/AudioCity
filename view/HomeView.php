@@ -47,15 +47,16 @@
       <?php include_once '../controller/TopSongs.php';
         $top = new TopSongs();
       foreach ($top->getToplist() as $item) {
-          $htmlitem = $top->getHtmlItem();
-          $htmlitem = str_replace("{id}", $item->getId(), $htmlitem);
-          $htmlitem = str_replace("{album}", $item->getAlbum() == null ? "&nbsp;" : $item->getAlbum(), $htmlitem);
-          $htmlitem = str_replace("{piclink}", $item->getPiclink(), $htmlitem);
-          $htmlitem = str_replace("{titel}", $item->getName(), $htmlitem);
-          $htmlitem = str_replace("{artist}", $item->getArtist(), $htmlitem);
-          $htmlitem = str_replace("{duration}", $item->getLengthFormatted(), $htmlitem);
-          $htmlitem = str_replace("{release}", $item->getDate(), $htmlitem);
-          echo $htmlitem;
+//          $htmlitem = $top->getHtmlItem($item, '12');
+//          $htmlitem = str_replace("{id}", $item->getId(), $htmlitem);
+//          $htmlitem = str_replace("{album}", $item->getAlbum() == null ? "&nbsp;" : $item->getAlbum(), $htmlitem);
+//          $htmlitem = str_replace("{piclink}", $item->getPiclink(), $htmlitem);
+//          $htmlitem = str_replace("{titel}", $item->getName(), $htmlitem);
+//          $htmlitem = str_replace("{artist}", $item->getArtist(), $htmlitem);
+//          $htmlitem = str_replace("{duration}", $item->getLengthFormatted(), $htmlitem);
+//          $htmlitem = str_replace("{release}", $item->getDate(), $htmlitem);
+//          echo $htmlitem;
+          echo $top->getHtmlItem($item, '12');
       } ?>
 </div>
 </div>

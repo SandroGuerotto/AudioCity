@@ -16,7 +16,7 @@ foreach ($list as $song) {
         echo '<div class="row-padding ">';
     }
 
-    echo $controller->getHtmlItem2($song, 'sixth');
+    echo $controller->getHtmlItem($song, 'sixth');
     $counter++;
     if ($counter == 6) {
         echo '</div>';

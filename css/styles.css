@@ -148,7 +148,17 @@ h1 a,h2 a,h3 a,h4 a,h5 a,h6 a{font-weight:inherit}
 .library-img{
 	width:100%;
 }
-
+.add-to-list{
+	float: right;
+	font-size: 24px;
+}
+.add-to-list > .fa + .fa,
+.add-to-list:hover > .fa {
+	display: none;
+}
+.add-to-list:hover > .fa + .fa {
+	display: inline;
+}
 
 
 .image-container {

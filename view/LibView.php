@@ -8,10 +8,10 @@
     <p class="center"> Um eine eingene Playlist zu erstellen musst Du angemeldet sein. <span class="text-dark-blue link" onclick="activateTab('view/LoginVIew.php')">Jetzt anmelden</span></p>
     <?php return; }
 
-    $top = new LibrarySongs();
-    foreach ($top->getList() as $item) {
+    $lib = new LibrarySongs();
+    foreach ($lib->getList() as $item) {
         echo'<p>';
-        $htmlitem = $top->getHtmlItem();
+        $htmlitem = $lib->getHtmlItem();
         $htmlitem = str_replace("{id}", $item->getId(), $htmlitem);
         $htmlitem = str_replace("{album}", $item->getAlbum() == null ? "&nbsp;" : $item->getAlbum(), $htmlitem);
         $htmlitem = str_replace("{piclink}", $item->getPiclink(), $htmlitem);
@@ -23,5 +23,7 @@
         echo $htmlitem;
 
         echo'</p>';
-    } ?>
+    }
+    $lib->close();
+    ?>
 </div>

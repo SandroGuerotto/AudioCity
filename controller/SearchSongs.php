@@ -1,17 +1,13 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: Sandro
- * Date: 01.04.2017
- * Time: 17:31
- */
 include_once "../model/Song.php";
 include_once "../model/CustomSession.php";
+include_once "../controller/LibrarySongs.php";
 class SearchSongs{
 
     private $db_link = null;
     private $genreList = array();
+    private $playlist = array();
     private $exclude = array(0);
 
     /**
@@ -20,7 +16,7 @@ class SearchSongs{
     public function __construct() {
 
         $this->db_link = CustomSession::getInstance()->db_link->getDb_link();
-
+        $this->getPlaylist();
     }
 
     /**
@@ -72,6 +68,10 @@ class SearchSongs{
         }
         return $list;
     }
+    private function getPlaylist() {
+        $obj = new LibrarySongs();
+        $this->playlist = $obj->getList();
+    }
 
     /**
      * @return mixed
@@ -80,14 +80,23 @@ class SearchSongs{
         return $this->genreList;
     }
 
-    public function getHtmlItem() : string {
-        $htmlitem = '<div class="col sixth margin-bottom"><a href="lib/?id={id}"><div class="card-2 grayscale-40"><img src="{piclink}" class="discover-img" alt="{album} Cover"><div class="container"><h4>{titel}</h4><p class="opacity">{album}</p><p><span>Länge: {duration}</span><span class="discover-date">Erschien: {release}</span></p></div></div></a></div>';
-        return $htmlitem;
-    }
-    public function getHtmlItem2(Song $song, String $size) : string {
+    public function getHtmlItem(Song $song, String $size) : string {
         // wenn Titel und Artist grösser als 25 Zeichen ist, dann muss der marquee tag eingefügt werden (scroll)
         $titel =  strlen($song->getName()) + strlen($song->getArtist()) <= 25 ? $song->getName() .' - '.$song->getArtist() : '<marquee scrolldelay="3" >'.$song->getName() .' - '.$song->getArtist().'</marquee>';
-        $htmlitem = '<div class="col '.$size.' margin-bottom"><a href="lib/?id='.$song->getId().'"><div class="card-2 grayscale-40"><img src="'.$song->getPiclink().'" class="discover-img" alt="{album} Cover"><div class="container"><h4>'.$titel.'</h4><p class="opacity">{album}</p><p><span>Länge: '.$song->getLengthFormatted().'</span><span class="discover-date">Erschien: '.$song->getDate().'</span></p></div></div></a></div>';
+
+        // Add to my libary knopf
+        if (CustomSession::getInstance()->getCurrentUser() != null && !$this->hasInPlaylist($song->getId())){
+            $button = '<span class="add-to-list pointer" onclick="addToLib('.$song->getId().')"><i class="fa fa-plus-square-o"></i><i class="fa fa-plus-square"></i></span> ';
+        }else if( CustomSession::getInstance()->getCurrentUser() != null && $this->hasInPlaylist($song->getId())){
+            $button = '<span class="add-to-list pointer" onclick="delFromLib('.$song->getId().')"><i class="fa fa-trash-o"></i><i class="fa fa-trash"></i></span> ';
+        }else{
+            $button = '<span class="add-to-list pointer" onclick="activateTab(\'view/LoginView.php\')"><i class="fa fa-plus-square-o"></i><i class="fa fa-plus-square"></i></span> ';
+        }
+
+
+        $titel = CustomSession::getInstance()->getCurrentUser() != null ? $titel .$button : $titel;
+
+        $htmlitem = '<div id="'.$song->getId().'" class="col '.$size.' margin-bottom"><div class="card-2 grayscale-40"><img src="'.$song->getPiclink().'" class="discover-img" alt="{album} Cover"><div class="container"><h4>'.$titel.'</h4><p class="opacity">{album}</p><p><span>Länge: '.$song->getLengthFormatted().'</span><span class="discover-date">Erschien: '.$song->getDate().'</span></p></div></div></div>';
         $htmlitem = str_replace("{album}", $song->getAlbum() == null ? "&nbsp;" : $song->getAlbum(), $htmlitem);
         return $htmlitem;
     }
@@ -97,6 +106,16 @@ class SearchSongs{
     public function close(){
         /* close connection */
         $this->db_link->close();
+    }
+
+    private function hasInPlaylist(int $id): bool{
+        foreach ($this->playlist as $item){
+            if ($item->getId() == $id){
+                return true;
+            }
+
+        }
+        return false;
     }
 
     /**

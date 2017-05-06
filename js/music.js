@@ -56,3 +56,42 @@ function close_player(){
     $('#controlMusic').hide();
     $('#music').attr("src",null);
 }
+function addToLib(musicid) {
+    $.ajax({
+        type: 'POST',
+        url: 'input/AddToLibInput.php',
+        data:  "id="+musicid ,
+        cache: false,
+        processData: false,
+        success: function (data) {
+            if (data){
+                $('#'+musicid).find(".add-to-list").attr("onclick", "delFromLib("+musicid+")");
+                $('#'+musicid).find(".fa-plus-square").toggleClass('fa-plus-square fa-trash');
+                $('#'+musicid).find(".fa-plus-square-o").toggleClass('fa-plus-square-o fa-trash-o');
+            }
+        },
+        error: function (request, status, error) {
+
+        }
+    });
+}
+
+function delFromLib(musicid) {
+    $.ajax({
+        type: 'POST',
+        url: 'input/DelFromLibInput.php',
+        data:  "id="+musicid ,
+        cache: false,
+        processData: false,
+        success: function (data) {
+            if (data){
+                $('#'+musicid).find(".add-to-list").attr("onclick", "addToLib("+musicid+")");
+                $('#'+musicid).find(".fa-trash").toggleClass('fa-trash fa-plus-square');
+                $('#'+musicid).find(".fa-trash-o").toggleClass('fa-trash-o fa-plus-square-o');
+            }
+        },
+        error: function (request, status, error) {
+
+        }
+    });
+}

@@ -6,14 +6,24 @@ include_once "../model/User.php";
 
 class LibrarySongs{
 
-    private $list = array();
+    private $db_link;
+
     /**
      * My Library constructor.
      */
     public function __construct() {
-        $db_link = CustomSession::getInstance()->db_link->getDb_link();
+
+    }
+
+    /**
+     * @return array
+     */
+    public function getList() : array {
+        $list = array();
+
+        $this->db_link = CustomSession::getInstance()->db_link->getDb_link();
         /* create a prepared statement */
-        $stmt = $db_link->prepare("SELECT * FROM userlib WHERE userid = ?");
+        $stmt = $this->db_link->prepare("SELECT DISTINCT * FROM userlib WHERE userid = ? GROUP BY id");
 
         $param =  CustomSession::getInstance()->getCurrentUser()->getId();
         $stmt->bind_param("i", $param);
@@ -27,18 +37,15 @@ class LibrarySongs{
         /* fetch value */
         while ($stmt->fetch()){
             $song = new Song($id, $name, $album, $length, $date, $piclink, $filelink, $genre, $artist);
-            array_push($this->list, $song);
+            array_push($list, $song);
         }
 
-        /* close connection */
-        $db_link->close();
-    }
 
-    /**
-     * @return array
-     */
-    public function getList() : array {
-        return $this->list;
+        return $list;
+    }
+    public function close(){
+        /* close connection */
+        $this->db_link->close();
     }
 
     public function getHtmlItem(){
@@ -46,4 +53,43 @@ class LibrarySongs{
         return$htmlitem;
     }
 
+    public function add(int $id):bool {
+        $db_link = CustomSession::getInstance()->db_link->getDb_link();
+        /* create a prepared statement */
+        $stmt = $db_link->prepare("INSERT INTO userbiblio(`Music_id`, `Login_id`, `insertdate`) VALUES (?,?,?)");
+
+        $param =  CustomSession::getInstance()->getCurrentUser()->getId();
+        $date = date("Y-m-d");
+        $stmt->bind_param("iis", $id, $param, $date);
+
+        /* execute query */
+        $stmt->execute();
+
+        /* if insert was successful, return true */
+        $changed = $stmt->affected_rows == -1 ? false : true;
+
+        /* close connection */
+        $db_link->close();
+
+        return $changed;
+    }
+    public function delete(int $id):bool {
+        $db_link = CustomSession::getInstance()->db_link->getDb_link();
+        /* create a prepared statement */
+        $stmt = $db_link->prepare("DELETE FROM userbiblio WHERE Music_id = ? AND Login_id = ?");
+
+        $param =  CustomSession::getInstance()->getCurrentUser()->getId();
+        $stmt->bind_param("ii", $id, $param);
+
+        /* execute query */
+        $stmt->execute();
+
+        /* if insert was successful, return true */
+        $changed = $stmt->affected_rows == -1 ? false : true;
+
+        /* close connection */
+        $db_link->close();
+
+        return $changed;
+    }
 }

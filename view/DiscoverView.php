@@ -24,7 +24,7 @@
                 echo '<h2 class="margin-left">'.$genre->getName().'</h2>';
 
                 foreach ($songs as $song){
-                    echo $search->getHtmlItem2($song, 'sixth');
+                    echo $search->getHtmlItem($song, 'sixth');
                 }
                 echo '</div>';
             }
