@@ -160,7 +160,12 @@ input[type=checkbox].check:disabled+.validate,input[type=radio].radio:disabled+.
 .topnav,.navbar{text-align:center}.hide-small{display:none!important}.layout-col,.mobile{display:block;width:100%!important}.bar-item.mobile,.dropdown-hover.mobile,.dropdown-click.mobile{text-align:center}
 .dropdown-hover.mobile,.dropdown-hover.mobile .btn,.dropdown-hover.mobile .button,.dropdown-click.mobile,.dropdown-click.mobile .btn,.dropdown-click.mobile .button{width:100%}}
 @media (max-width:768px){.modal-content{width:500px}.modal{padding-top:50px}}
-@media (min-width:993px){.modal-content{width:900px}.hide-large{display:none!important}.sidenav.collapse,.sidebar.collapse{display:block!important}}
+@media (min-width:993px){
+    .modal-content{width:900px}
+    .hide-large{display:none!important}
+    .sidenav.collapse,.sidebar.collapse{display:block!important}
+    .margin-6{margin-left: 6em; margin-right: 6em}
+}
 @media (max-width:992px) and (min-width:601px){.hide-medium{display:none!important}}
 @media (max-width:992px){.sidenav.collapse,.sidebar.collapse{display:none}.main{margin-left:0!important;margin-right:0!important}}
 .top,.bottom{position:fixed;width:100%;z-index:1}.top{top:0}.bottom{bottom:0}

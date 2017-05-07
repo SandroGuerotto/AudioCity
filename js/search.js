@@ -15,3 +15,19 @@ function searchByText() {
         }
     });
 }
+function searchById(musicid) {
+    console.log((musicid));
+    $.ajax({
+        type: 'POST',
+        url: 'input/SearchInput.php',
+        data: "id="+musicid,
+        cache: false,
+        processData: false,
+        success: function (data) {
+            $('#grid').html(data);
+        },
+        error: function (request, status, error) {
+
+        }
+    });
+}

@@ -1,11 +1,17 @@
 <?php
 require_once "../controller/SearchSongs.php";
 
-
-$search = filter_input(INPUT_POST, 'search') ?? "";
-
 $controller = new SearchSongs();
-$list = $controller->search($search);
+
+if (isset($_POST['id'])){
+    $search = $_POST['id'];
+    $list = $controller->searchByID($search);
+}else{
+    $search = filter_input(INPUT_POST, 'search') ?? "";
+
+    $list = $controller->search($search);
+}
+
 
 $hits = count($list) == 0 ? 'Ups, kein Treffer gefunden!' : 'Treffer: ' .count($list) ;
 echo '<h2 class="margin-left">'.$hits.'</h2>';
