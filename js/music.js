@@ -4,10 +4,8 @@ var data_new_img;
 var imagelist = new Array();
 var musicidlist = new Array();
 var musicnamelist = new Array();
-var event;
 
 function startmusic(e) {
-	event = e;
 	var audiostream = $('#music').get(0);
 	var time = $('tracktime');
 	musiclist = [];
@@ -45,7 +43,7 @@ function startmusic(e) {
    
 
     $('#controlMusic').show();
-
+	
     if(audiostream.paused){
         audiostream.play();
         e.target.style.backgroundImage="url(images/pause.png)";
@@ -67,6 +65,9 @@ function startmusic(e) {
 			document.getElementById('tracktime').innerHTML = formatTime(audiostream.currentTime) + " / " + formatTime(audiostream.duration);
         }
     }
+		
+	arrowfadein();
+	
 }
 
 function gotoTime(e){
@@ -186,6 +187,7 @@ function addToLib(musicid) {
 
         }
     });
+
 }
 
 function delFromLib(musicid) {
@@ -207,6 +209,30 @@ function delFromLib(musicid) {
         }
     });
 }
+
+function arrowfadein() {
+if ( $('#controlMusic').is(':visible')) {
+			$("#hidearrow").css("bottom",$("#controlMusic").height() + 2 +"px");
+			$("#hidearrow").fadeIn(800, function() { $(this).show(); })
+		}
+	
+	
+}
+
+function showorhide(){
+   if($('#controlMusic').is(':visible')){
+    $('#controlMusic').slideUp(800, function() { $(this).hide(); 
+   $("#hidearrow").css("bottom", "5px"); 
+   $("#controlarrow").find(".fa-arrow-down").toggleClass('fa-arrow-down fa-arrow-up');})
+   }else{
+    $("#controlarrow").find(".fa-arrow-up").addClass("fa-arrow-down").removeClass("fa-arrow-up");
+    $('#controlMusic').slideDown(800, function() { $(this).show(); 
+   $("#hidearrow").css("bottom",  $('#controlMusic').height() + "px"); 
+  })
+   }
+  
+}
+
 function removeFromList(musicid) {
     console.log(musicid);
     $('#main-container-'+musicid).fadeOut(800, function() { $(this).remove(); })
