@@ -152,6 +152,12 @@ h1 a,h2 a,h3 a,h4 a,h5 a,h6 a{font-weight:inherit}
 	float: right;
 	font-size: 24px;
 }
+.maincontrolbar{
+margin-left: 6px; 
+float: left; 
+width:60%;  
+margin-right: 20px
+}
 .add-to-list > .fa + .fa,
 .add-to-list:hover > .fa {
 	display: none;
@@ -166,6 +172,76 @@ h1 a,h2 a,h3 a,h4 a,h5 a,h6 a{font-weight:inherit}
    right: 0px;
    top: 0px;
    z-index: 1000;
+}
+
+.libviewmain{
+
+margin-left: 6em; 
+margin-right: 6em; 
+
+}
+
+.trackstyle{
+float:left; margin-top:35px
+}
+@media screen and (max-width: 660px){ .playlist-item-wrapper{
+padding-left: 0em;
+padding-right: 0em;
+margin-bottom: 0em;
+}
+div[id^=main-container] {
+    padding-left: 0em;
+	padding-right: 0em;
+	margin-bottom: 0em;
+}
+
+div[id=maincontrolbar]{
+	margin-left: 0em;
+	margin-right: 0em;
+	width: 100%;
+	float: none;
+	padding-left: 1em;
+	padding-right: 1em;
+}
+
+#tracktime{
+   position:absolute;
+   top:0;
+   right:0;
+   margin-top: 1em;
+   margin-right: 1em;
+}
+#closeplayer{
+display: none;
+}
+
+#imgcontainer{
+width: 100%;
+
+}
+
+#work{
+margin-left: 0em;
+margin-right: 0em;
+}
+
+#divlineborderimg{
+width: 100%;
+margin-left: 0em;
+margin-right: 0em;
+
+}
+#musicimage{
+display: none;
+}
+div {
+	margin-left: 0em;
+	margin-right: 0em;
+	margin-bottom: 0em;
+	float: none;
+    position: none;
+    width: 100%;
+}
 }
 
 

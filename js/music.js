@@ -1,9 +1,11 @@
 	
 var musiclist = new Array();
-var data_new_img;	
 var imagelist = new Array();
 var musicidlist = new Array();
 var musicnamelist = new Array();
+var divplaylistcontrol = $('div.playlist-control');
+
+
 
 function startmusic(e) {
 	var audiostream = $('#music').get(0);
@@ -25,13 +27,9 @@ function startmusic(e) {
 		musicnamelist.push(mssrc[2]);
 		
 	}
-	console.log("Musicliste länge: " + musiclist.length);
-	console.log("imageliste länge: " + imagelist.length);
-	console.log("musicidliste länge: " + musicidlist.length);
-	console.log("musicnamelist länge: " + musicnamelist.length);
 
     // reset
-    $('div.playlist-control').css('backgroundImage',"url(images/play.png)");
+    divplaylistcontrol.css('backgroundImage',"url(images/play.png)");
 
     if (data_new[0] != $("#music").attr("src")){
         $("#musicimage").attr("src", data_new[1] + "?" + new Date().getTime() ); // set cover
@@ -105,11 +103,11 @@ function secondsforward(){
   
 function next(){
 try{
-$('div.playlist-control').css('backgroundImage',"url(images/play.png)");
+divplaylistcontrol.css('backgroundImage',"url(images/play.png)");
 }catch(err){
 
 }
-    $('div.playlist-control').css('backgroundImage',"url(images/play.png)");
+    divplaylistcontrol.css('backgroundImage',"url(images/play.png)");
     $('#music').get(0).pause();
     var musicindex = musiclist.indexOf($('#music').get(0).getAttribute('src'));
 	console.log("grösse von array: " + musiclist.length);
@@ -135,7 +133,7 @@ $('div.playlist-control').css('backgroundImage',"url(images/play.png)");
 }
 
 function previous(){
-    $('div.playlist-control').css('backgroundImage',"url(images/play.png)");
+    divplaylistcontrol.css('backgroundImage',"url(images/play.png)");
     $('#overlay-' + $('#music').attr("current")).css('backgroundImage',"url(images/pause.png)");
     $('#music').get(0).pause();
     var musicindex = musiclist.indexOf($('#music').get(0).getAttribute('src'));
@@ -164,7 +162,7 @@ function previous(){
 
 
 function close_player(){
-	$('div.playlist-control').css('backgroundImage',"url(images/play.png)");
+	divplaylistcontrol.css('backgroundImage',"url(images/play.png)");
     $('#controlMusic').hide();
 	$('#music').get(0).pause();
     $('#music').attr("src",null);
@@ -232,6 +230,7 @@ function showorhide(){
    }
   
 }
+
 
 function removeFromList(musicid) {
     console.log(musicid);

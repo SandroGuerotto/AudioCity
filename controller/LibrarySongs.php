@@ -50,7 +50,7 @@ class LibrarySongs{
 
     public function getHtmlItem(){
         $button = '<span class="add-to-list pointer" onclick="delFromLib({id});removeFromList({id})"><i class="fa fa-trash-o"></i><i class="fa fa-trash"></i></span> ';
-        $htmlitem = '<div id="main-container-{id}" class="playlist-item-wrapper"><div class="lineBorderImage"><div class="image-container"><img id="image" src="{piclink}" class="library-img" alt="{album} Cover"/><div id="overlay-{id}" data-src="{audiolink};{piclink};{titel} - {artist};{id}" class="playlist-control"  onclick="startmusic(event)"></div></div>'.$button.'<div class="container" style="display: inline-block;"><h3 id="texttitle">{titel} - {artist}</h3><p class="opacity">{album}</p><p><span>Länge: {duration}</span><span class="discover-date" style="margin-left: 1em;">Erscheinung: {release}</span></p></div></div></div>';
+        $htmlitem = '<div id="main-container-{id}" class="playlist-item-wrapper"><div id="divlineborderimg" class="lineBorderImage"><div id="imgcontainer" class="image-container"><img id="image" src="{piclink}" class="library-img" alt="{album} Cover"/><div id="overlay-{id}" data-src="{audiolink};{piclink};{titel} - {artist};{id}" class="playlist-control"  onclick="startmusic(event)"></div></div>'.$button.'<div class="container" style="display: inline-block;"><h3 id="texttitle">{titel} - {artist}</h3><p class="opacity">{album}</p><p><span>Länge: {duration}</span><span class="discover-date" style="margin-left: 1em;">Erscheinung: {release}</span></p></div></div></div>';
         return$htmlitem;
     }
 

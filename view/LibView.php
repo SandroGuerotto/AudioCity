@@ -1,5 +1,5 @@
 <!-- Music Section -->
-<div class="container padding-128 white" style="margin-left: 6em; margin-right: 6em; " id="work">
+<div class="container padding-128 white libviewmain" id="work">
     <h3 class="center">MY MUSIC</h3>
     <?php include_once '../controller/LibrarySongs.php';
           include_once "../model/CustomSession.php";
