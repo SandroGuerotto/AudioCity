@@ -105,9 +105,17 @@ $('div.playlist-control').css('backgroundImage',"url(images/play.png)");
 }
   
 function next(){
-    pausemusic();
-    var musicindex = musiclist.indexOf($('#music').get(0).getAttribute('src').replace('/audiocity/', ''));
+try{
+$('div.playlist-control').css('backgroundImage',"url(images/play.png)");
+}catch(err){
+
+}
+    $('div.playlist-control').css('backgroundImage',"url(images/play.png)");
+    $('#music').get(0).pause();
+    var musicindex = musiclist.indexOf($('#music').get(0).getAttribute('src').replace("/audiocity/", ""));
 	console.log("grösse von array: " + musiclist.length);
+	console.log( musiclist);
+	console.log("index" + musicindex);
     if(musicindex == musiclist.length - 1){
 		var imagepath = window.location.pathname == '/audiocity'? '/audiocity/' + imagelist[0]:  imagelist[0];
 		var musicpath = window.location.pathname == '/audiocity'? '/audiocity/' + musiclist[0]:  musiclist[0];
@@ -133,6 +141,7 @@ function previous(){
     pausemusic();
     $('#overlay-' + $('#music').attr("current")).css('backgroundImage',"url(images/pause.png)");
     var musicindex = musiclist.indexOf($('#music').get(0).getAttribute('src').replace('/audiocity/', ''));
+    console.log(musicindex);
     if(musicindex == 0){
 		var imagepath = window.location.pathname == '/audiocity'? '/audiocity/' + imagelist[musiclist.length - 1]:  imagelist[musiclist.length - 1];
 		var musicpath = window.location.pathname == '/audiocity'? '/audiocity/' + musiclist[musiclist.length - 1]:  musiclist[musiclist.length - 1];
@@ -170,12 +179,16 @@ function addToLib(musicid) {
         data:  "id="+musicid ,
         cache: false,
         processData: false,
+        dataType: "json",
         success: function (data) {
-            if (data){
+            console.log(data);
                 $('#'+musicid).find(".add-to-list").attr("onclick", "delFromLib("+musicid+")");
                 $('#'+musicid).find(".fa-plus-square").toggleClass('fa-plus-square fa-trash');
                 $('#'+musicid).find(".fa-plus-square-o").toggleClass('fa-plus-square-o fa-trash-o');
-            }
+            musiclist.push(data[0]);
+            imagelist.push(data[1]);
+            musicidlist.push(data[3]);
+            musicnamelist.push(data[2]);
         },
         error: function (request, status, error) {
 
@@ -205,8 +218,8 @@ function delFromLib(musicid) {
 }
 
 function arrowfadein() {
-if ( $('#controlMusic').is(':visible')) {
-			$("#hidearrow").css("bottom",$("#controlMusic").height() + 2 +"px");
+if ( $('#controllBar').is(':visible')) {
+			$("#hidearrow").css("bottom",$("#controllBar").height() + 2 +"px");
 			$("#hidearrow").fadeIn(800, function() { $(this).show(); })
 		}
 	
@@ -214,13 +227,13 @@ if ( $('#controlMusic').is(':visible')) {
 }
 
 function showorhide(){
-   if($('#controlMusic').is(':visible')){
-    $('#controlMusic').slideUp(800, function() { $(this).hide(); 
+   if($('#controllBar').is(':visible')){
+    $('#controllBar').slideUp(800, function() { $(this).hide();
    $("#hidearrow").css("bottom", "5px"); 
    $("#controlarrow").find(".fa-arrow-down").toggleClass('fa-arrow-down fa-arrow-up');})
    }else{
     $("#controlarrow").find(".fa-arrow-up").addClass("fa-arrow-down").removeClass("fa-arrow-up");
-    $('#controlMusic').slideDown(800, function() { $(this).show(); 
+    $('#controllBar').slideDown(800, function() { $(this).show();
    $("#hidearrow").css("bottom",  $('#controlMusic').height() + "px"); 
   })
    }
@@ -230,5 +243,10 @@ function showorhide(){
 
 function removeFromList(musicid) {
     console.log(musicid);
+    var mssrc = $('#overlay-'+musicid).attr( "data-src" ).split(';');
+    musiclist.splice(musiclist.indexOf(mssrc[0]) ,1);
+    imagelist.splice(imagelist.indexOf(mssrc[1]), 1);
+    musicidlist.splice(musicidlist.indexOf(mssrc[3]), 1);
+    musicnamelist.splice(musicnamelist.indexOf(mssrc[2]) ,1);
     $('#main-container-'+musicid).fadeOut(800, function() { $(this).remove(); })
 }
