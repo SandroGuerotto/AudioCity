@@ -191,6 +191,9 @@ padding-right: 0em;
 margin-bottom: 0em;
 }
 div[id^=main-container] {
+	width: 45%;
+	float: left;
+	margin: 0.5em;
     padding-left: 0em;
 	padding-right: 0em;
 	margin-bottom: 0em;
@@ -203,6 +206,15 @@ div[id=maincontrolbar]{
 	float: none;
 	padding-left: 1em;
 	padding-right: 1em;
+}
+
+#musictext{
+padding: 0em;
+
+}
+
+
+#texttitle{
 }
 
 #tracktime{
@@ -244,8 +256,6 @@ div {
     width: 100%;
 }
 }
-
-
 .image-container {
 	float: left;
 	display:block;
