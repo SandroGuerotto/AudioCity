@@ -105,17 +105,8 @@ $('div.playlist-control').css('backgroundImage',"url(images/play.png)");
 }
   
 function next(){
-try{
-$('div.playlist-control').css('backgroundImage',"url(images/play.png)");
-}catch(err){
-
-}
-    $('div.playlist-control').css('backgroundImage',"url(images/play.png)");
-    $('#music').get(0).pause();
+	pausemusic();
     var musicindex = musiclist.indexOf($('#music').get(0).getAttribute('src').replace("/audiocity/", ""));
-	console.log("grösse von array: " + musiclist.length);
-	console.log( musiclist);
-	console.log("index" + musicindex);
     if(musicindex == musiclist.length - 1){
 		var imagepath = window.location.pathname == '/audiocity'? '/audiocity/' + imagelist[0]:  imagelist[0];
 		var musicpath = window.location.pathname == '/audiocity'? '/audiocity/' + musiclist[0]:  musiclist[0];
