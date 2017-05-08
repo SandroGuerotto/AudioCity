@@ -17,7 +17,8 @@ $currentUser = $session->getCurrentUser();
     <div class="right hide-small">
       <span onclick="activateTab('view/HomeView.php')" class="bar-item button pointer"><i class="fa fa-home"></i> HOME</span>
       <span onclick="activateTab('view/DiscoverView.php')" class="bar-item button pointer"><i class="fa fa-search"></i> DISCOVER</span>
-      <span onclick="<?= $currentUser != null ? " activateTab('view/LibView.php')" : " activateTab('view/LoginView.php')" ?>" class="bar-item button pointer"><i class="fa fa-th"></i> MY MUSIC</span>
+<!--      <span onclick="--><?//= $currentUser != null ? " activateTab('view/LibView.php')" : " activateTab('view/LoginView.php')" ?><!--" class="bar-item button pointer"><i class="fa fa-th"></i> MY MUSIC</span>-->
+      <span onclick="activateTab('view/LibView.php')" class="bar-item button pointer"><i class="fa fa-th"></i> MY MUSIC</span>
       <span onclick="<?= $currentUser != null ? " logout()" : " activateTab('view/LoginView.php')" ?>"  class="bar-item button pointer"><i <?= $currentUser != null ? " class=\"fa fa-sign-out\"" : " class=\"fa fa-sign-in\"" ?> ></i> <?= $currentUser != null ? "LOGOUT" : "LOGIN" ?></span>
     </div>
     <!-- Hide right-floated links on small screens and replace them with a menu icon -->
@@ -32,7 +33,8 @@ $currentUser = $session->getCurrentUser();
     <span href="javascript:void(0)" onclick="menu_close()" class="large padding-16"><i class="fa fa-times"></i> Close </span>
     <span onclick="menu_close(); activateTab('view/HomeView.php')">HOME</span>
     <span onclick="menu_close();activateTab('view/DiscoverView.php')">DISCOVER</span>
-    <span onclick="menu_close();<?= $currentUser != null ? " activateTab('view/LibView.php')" : " activateTab('view/LoginView.php')" ?>">MY MUSIC</span>
+<!--    <span onclick="menu_close();--><?//= $currentUser != null ? " activateTab('view/LibView.php')" : " activateTab('view/LoginView.php')" ?><!--">MY MUSIC</span>-->
+    <span onclick="menu_close();activateTab('view/LibView.php')">MY MUSIC</span>
     <span onclick="<?= $currentUser != null ? " logout()" : " activateTab('view/LoginView.php')"?>;menu_close()"><?= $currentUser != null ? "LOGOUT" : "LOGIN" ?></span>
 </nav>
 

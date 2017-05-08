@@ -148,7 +148,32 @@ class SearchSongs{
         }
         return $list;
     }
+    /**
+     * @param int $input
+     * @return array
+     */
+    public function searchByID(int $input) :array {
+        $list = array();
 
+        /* create a prepared statement */
+        $stmt = $this->db_link->prepare("SELECT DISTINCT * FROM musicfull WHERE id = ?  GROUP BY id");
+
+        $stmt->bind_param('i',$input);
+
+        /* execute query */
+        $stmt->execute();
+
+        /* bind result variables */
+        $stmt->bind_result($id, $name, $album, $length, $date, $piclink, $filelink, $genre_id, $genre, $artist );
+
+        /* fetch value */
+        while ($stmt->fetch()){
+            $song = new Song($id, $name, $album, $length, $date, $piclink, $filelink, $genre, $artist);
+            /* put song into returning array */
+            array_push($list, $song);
+        }
+        return $list;
+    }
 }
 class Genre{
     private $id;

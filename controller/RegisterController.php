@@ -43,7 +43,7 @@ class Register {
         $stmt->execute();
         /* get inserted id */
         $id = mysqli_insert_id($db_link);
-        if (!empty($id) || !is_null($id)) {
+        if (!empty($id) && !is_null($id) && $id > 0) {
             /* create new user and save in session */
             $user = new User($id, $username, $password, $mail, $name, $forename);
             $this->saveUser($user);

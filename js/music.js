@@ -3,9 +3,6 @@ var musiclist = new Array();
 var imagelist = new Array();
 var musicidlist = new Array();
 var musicnamelist = new Array();
-var divplaylistcontrol = $('div.playlist-control');
-
-
 
 function startmusic(e) {
 	var audiostream = $('#music').get(0);
@@ -29,7 +26,7 @@ function startmusic(e) {
 	}
 
     // reset
-    divplaylistcontrol.css('backgroundImage',"url(images/play.png)");
+    $('div.playlist-control').css('backgroundImage',"url(images/play.png)");
 
     if (data_new[0] != $("#music").attr("src")){
         $("#musicimage").attr("src", data_new[1] + "?" + new Date().getTime() ); // set cover
@@ -45,11 +42,11 @@ function startmusic(e) {
     if(audiostream.paused){
         audiostream.play();
         e.target.style.backgroundImage="url(images/pause.png)";
-        $("#controlMusic").find(".fa-play-circle-o").addClass("fa-pause-circle-o").removeClass("fa-play-circle-o");
+        $("#controlMusic").find(".fa-play-circle").addClass("fa-pause-circle").removeClass("fa-play-circle");
     }else{
         audiostream.pause();
         e.target.style.backgroundImage="url(images/play.png)";
-        $("#controlMusic").find(".fa-pause-circle-o").addClass("fa-play-circle-o").removeClass("fa-pause-circle-o");
+        $("#controlMusic").find(".fa-pause-circle").addClass("fa-play-circle").removeClass("fa-pause-circle");
     }
 
     var width = audiostream.currentTime / audiostream.duration;
@@ -75,15 +72,16 @@ function gotoTime(e){
 }
 
 function playmusic(){
+	$('div.playlist-control').css('backgroundImage',"url(images/play.png)");
     var audiostream = $('#music').get(0);
     if(audiostream.paused){
         audiostream.play();
         $('#overlay-' + $('#music').attr("current")).css('backgroundImage',"url(images/pause.png)");
-        $("#controlMusic").find(".fa-play-circle-o").addClass("fa-pause-circle-o").removeClass("fa-play-circle-o");
+        $("#controlMusic").find(".fa-play-circle").addClass("fa-pause-circle").removeClass("fa-play-circle");
     }else{
         audiostream.pause();
         $('#overlay-' + $('#music').attr("current")).css('backgroundImage',"url(images/play.png)");
-        $("#controlMusic").find(".fa-pause-circle-o").addClass("fa-play-circle-o").removeClass("fa-pause-circle-o");
+        $("#controlMusic").find(".fa-pause-circle").addClass("fa-play-circle").removeClass("fa-pause-circle");
     }
 }
 function formatTime(seconds) {
@@ -100,16 +98,15 @@ function secondsback(){
 function secondsforward(){
 	$('#music').get(0).currentTime = $('#music').get(0).currentTime + 5;
 }
+
+function pausemusic(){
+$('#music').get(0).pause();
+$('div.playlist-control').css('backgroundImage',"url(images/play.png)");
+}
   
 function next(){
-try{
-divplaylistcontrol.css('backgroundImage',"url(images/play.png)");
-}catch(err){
-
-}
-    divplaylistcontrol.css('backgroundImage',"url(images/play.png)");
-    $('#music').get(0).pause();
-    var musicindex = musiclist.indexOf($('#music').get(0).getAttribute('src'));
+    pausemusic();
+    var musicindex = musiclist.indexOf($('#music').get(0).getAttribute('src').replace('/audiocity/', ''));
 	console.log("grösse von array: " + musiclist.length);
     if(musicindex == musiclist.length - 1){
 		var imagepath = window.location.pathname == '/audiocity'? '/audiocity/' + imagelist[0]:  imagelist[0];
@@ -128,15 +125,14 @@ divplaylistcontrol.css('backgroundImage',"url(images/play.png)");
         $('#music').get(0).setAttribute("src", musicpath);
         $("#musicimage").attr("src", imagepath + "?" + new Date().getTime() );
         $('#music').get(0).play();
-        $("#controlMusic").find(".fa-play-circle-o").addClass("fa-pause-circle-o").removeClass("fa-play-circle-o");
+        $("#controlMusic").find(".fa-play-circle").addClass("fa-pause-circle").removeClass("fa-play-circle");
     }
 }
 
 function previous(){
-    divplaylistcontrol.css('backgroundImage',"url(images/play.png)");
+    pausemusic();
     $('#overlay-' + $('#music').attr("current")).css('backgroundImage',"url(images/pause.png)");
-    $('#music').get(0).pause();
-    var musicindex = musiclist.indexOf($('#music').get(0).getAttribute('src'));
+    var musicindex = musiclist.indexOf($('#music').get(0).getAttribute('src').replace('/audiocity/', ''));
     if(musicindex == 0){
 		var imagepath = window.location.pathname == '/audiocity'? '/audiocity/' + imagelist[musiclist.length - 1]:  imagelist[musiclist.length - 1];
 		var musicpath = window.location.pathname == '/audiocity'? '/audiocity/' + musiclist[musiclist.length - 1]:  musiclist[musiclist.length - 1];
@@ -155,17 +151,17 @@ function previous(){
         $('#music').get(0).setAttribute("src", musicpath);
         $("#musicimage").attr("src", imagepath + "?" + new Date().getTime() );
         $('#music').get(0).play();
-        $("#controlMusic").find(".fa-play-circle-o").addClass("fa-pause-circle-o").removeClass("fa-play-circle-o");
+        $("#controlMusic").find(".fa-play-circle").addClass("fa-pause-circle").removeClass("fa-play-circle");
     }
 
 }
 
 
 function close_player(){
-	divplaylistcontrol.css('backgroundImage',"url(images/play.png)");
+	pausemusic();
     $('#controlMusic').hide();
-	$('#music').get(0).pause();
     $('#music').attr("src",null);
+	$("#hidearrow").css("display","none");
 }
 function addToLib(musicid) {
     $.ajax({

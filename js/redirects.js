@@ -1,6 +1,4 @@
 $(document).ready(function(){
-
-    console.log(window.location.pathname);
     switch (window.location.pathname){
         case "/audiocity/login":
             activateTab("view/LoginView.php");

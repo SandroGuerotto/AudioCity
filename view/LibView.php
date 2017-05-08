@@ -1,11 +1,11 @@
 <!-- Music Section -->
-<div class="container padding-128 white libviewmain" id="work">
+<div class="container padding-128 white margin-6" id="work">
     <h3 class="center">MY MUSIC</h3>
     <?php include_once '../controller/LibrarySongs.php';
           include_once "../model/CustomSession.php";
 
     if (CustomSession::getInstance()->getCurrentUser() == null){ ?>
-    <p class="center"> Um eine eingene Playlist zu erstellen musst Du angemeldet sein. <span class="text-dark-blue link" onclick="activateTab('view/LoginVIew.php')">Jetzt anmelden</span></p>
+    <p class="center"> Um eine eingene Playlist zu erstellen musst Du angemeldet sein. <span class="text-dark-blue link opacity" onclick="activateTab('view/LoginVIew.php')">Jetzt anmelden</span></p>
     <?php return; }
 
     $lib = new LibrarySongs();
