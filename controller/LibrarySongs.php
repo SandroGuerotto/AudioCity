@@ -54,7 +54,7 @@ class LibrarySongs{
         return$htmlitem;
     }
 
-    public function add(int $id):bool {
+    public function add(int $id) {
         $db_link = CustomSession::getInstance()->db_link->getDb_link();
         /* create a prepared statement */
         $stmt = $db_link->prepare("INSERT INTO userbiblio(`Music_id`, `Login_id`, `insertdate`) VALUES (?,?,?)");
@@ -66,13 +66,32 @@ class LibrarySongs{
         /* execute query */
         $stmt->execute();
 
-        /* if insert was successful, return true */
-        $changed = $stmt->affected_rows == -1 ? false : true;
+        /* if insert was successful, return data */
+        if ( $stmt->affected_rows == -1) {
+            http_response_code(500);
+        }else{
+            $stmt = $db_link->prepare("SELECT * FROM userlib WHERE libid = ?");
+            $id = mysqli_insert_id($db_link);
+            $stmt->bind_param("i", $id);
+            /* execute query */
+            $stmt->execute();
+            /* bind result variables */
+            $stmt->bind_result($id, $name, $album, $length, $date, $piclink, $filelink, $genre, $artist, $libid, $inserdate, $userid );
+            /* fetch value */
+            while ($stmt->fetch()){
+                $array = array();
+                $array[0] = $filelink;
+                $array[1] = $piclink;
+                $array[2] = $name.' - '.$artist;
+                $array[3] = $id;
+                echo json_encode($array);
+            }
+        }
 
         /* close connection */
         $db_link->close();
 
-        return $changed;
+
     }
     public function delete(int $id):bool {
         $db_link = CustomSession::getInstance()->db_link->getDb_link();

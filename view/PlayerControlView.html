@@ -1,23 +1,23 @@
 <div id="controlMusic" class="bottom"  style="display: none;">
-    <div id="controlarrow" class="right-align padding-right padding-4"><i id="hidearrow" class="fa fa-arrow-down" class="tag" style=" -webkit-text-stroke-width: 1px; font-size: 20px; color: white;  display: none; -webkit-text-stroke-color: gray;" onclick="showorhide()"></i></div>
+    <div id="controlarrow" class="right-align padding-right padding-4"><i id="hidearrow" class="fa fa-arrow-down pointer" style=" -webkit-text-stroke-width: 1px; font-size: 20px; color: white;  display: none; -webkit-text-stroke-color: gray;" onclick="showorhide()"></i></div>
     <audio id="music" preload="auto" src="" type="audio/mp3" current=""></audio>
     <div id="controllBar" class="bar white">
         <img src="" id="musicimage" class="music-container" style="margin: 5px"/>
         <div style="margin-left: 6px; float: left; width:60%;  margin-right: 20px">
             <p id="songname">Name of the song</p>
-            <div id="musicdiv"   onclick="gotoTime(event)" class="musicprogress">
+            <div id="musicdiv"   onclick="gotoTime(event)" class="musicprogress pointer">
                 <div id="musicbar"></div>
             </div>
 			
         </div>
 		<span id="tracktime" style="float:left; margin-top:35px ">0</span>
-        <div class="center">
-            <i class="fa fa-step-backward" style="font-size: 40px;" onclick="previous()"></i>
-            <i class="fa fa-backward" style="font-size: 40px;" onclick="secondsback()"></i>
-            <i id="playicon" class="fa fa-pause-circle-o" style="font-size: 50px;" onclick="playmusic()" class="pointer"></i>
-            <i class="fa fa-forward" style="font-size: 40px;" onclick="secondsforward()"></i>
-            <i class="fa fa-step-forward" style="font-size: 40px;" onclick="next()"></i>
-            <i class="fa fa-times" style="font-size: 20px; float:right; margin-right: 10px; margin-top: 5px; color: gray;" onclick="close_player()"></i>
+        <div class="center padding-12">
+            <i class="fa fa-step-backward pointer" style="font-size: 40px;" onclick="previous()"></i>
+            <i class="fa fa-backward pointer" style="font-size: 40px;" onclick="secondsback()"></i>
+            <i id="playicon" class="fa fa-pause-circle-o pointer" style="font-size: 50px;" onclick="playmusic()" class="pointer"></i>
+            <i class="fa fa-forward pointer" style="font-size: 40px;" onclick="secondsforward()"></i>
+            <i class="fa fa-step-forward pointer" style="font-size: 40px;" onclick="next()"></i>
+            <i class="fa fa-times pointer" style="font-size: 20px; float:right; margin-right: 10px; margin-top: 5px; color: gray;" onclick="close_player()"></i>
         </div>
 		
     </div>
