@@ -211,8 +211,8 @@ function delFromLib(musicid) {
 }
 
 function arrowfadein() {
-if ( $('#controlMusic').is(':visible')) {
-			$("#hidearrow").css("bottom",$("#controlMusic").height() + 2 +"px");
+if ( $('#controllBar').is(':visible')) {
+			$("#hidearrow").css("bottom",$("#controllBar").height() + 2 +"px");
 			$("#hidearrow").fadeIn(800, function() { $(this).show(); })
 		}
 	
@@ -220,13 +220,13 @@ if ( $('#controlMusic').is(':visible')) {
 }
 
 function showorhide(){
-   if($('#controlMusic').is(':visible')){
-    $('#controlMusic').slideUp(800, function() { $(this).hide(); 
+   if($('#controllBar').is(':visible')){
+    $('#controllBar').slideUp(800, function() { $(this).hide();
    $("#hidearrow").css("bottom", "5px"); 
    $("#controlarrow").find(".fa-arrow-down").toggleClass('fa-arrow-down fa-arrow-up');})
    }else{
     $("#controlarrow").find(".fa-arrow-up").addClass("fa-arrow-down").removeClass("fa-arrow-up");
-    $('#controlMusic').slideDown(800, function() { $(this).show(); 
+    $('#controllBar').slideDown(800, function() { $(this).show();
    $("#hidearrow").css("bottom",  $('#controlMusic').height() + "px"); 
   })
    }
