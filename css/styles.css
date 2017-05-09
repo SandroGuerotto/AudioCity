@@ -257,6 +257,7 @@ div {
 }
 }
 .image-container {
+	margin-top: 18px;
 	float: left;
 	display:block;
     position: relative;

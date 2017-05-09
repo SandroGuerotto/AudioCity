@@ -49,21 +49,26 @@ function startmusic(e) {
         $("#controlMusic").find(".fa-pause-circle").addClass("fa-play-circle").removeClass("fa-pause-circle");
     }
 
-    var width = audiostream.currentTime / audiostream.duration;
+    
     var id = setInterval(frame, 1);
-    function frame() {
-        if (width >= 100) {
-			clearInterval(id);          
-        } else {
-            width = (audiostream.currentTime / audiostream.duration) * 100;
-            $('#musicbar').width( width + '%');
-			document.getElementById('tracktime').innerHTML = formatTime(audiostream.currentTime) + " / " + formatTime(audiostream.duration);
-        }
-    }
+    
 		
 	arrowfadein();
 	
 }
+
+function frame() {
+	var width = $('#music').get(0).currentTime / $('#music').get(0).duration;
+        if (width >= 100) {
+			next();
+
+			//clearInterval(id);          
+        } else {
+            width = ($('#music').get(0).currentTime / $('#music').get(0).duration) * 100;
+            $('#musicbar').width( width + '%');
+			document.getElementById('tracktime').innerHTML = formatTime($('#music').get(0).currentTime) + " / " + formatTime($('#music').get(0).duration);
+        }
+    }
 
 function gotoTime(e){
 	var audiostream = $('#music').get(0);
@@ -115,6 +120,7 @@ function next(){
 		$("#musicimage").attr("src", imagepath + "?" + new Date().getTime());
         $('#music').get(0).setAttribute("src", musicpath);
         $('#music').get(0).play();
+		var id = setInterval(frame, 1);
         // $("#controlMusic").find(".fa-pause-circle-o").addClass("fa-play-circle-o").removeClass("fa-pause-circle-o");
     }else{
 		var imagepath = window.location.pathname == '/audiocity'? '/audiocity/' + imagelist[musicindex + 1]:  imagelist[musicindex + 1];
@@ -125,7 +131,9 @@ function next(){
         $("#musicimage").attr("src", imagepath + "?" + new Date().getTime() );
         $('#music').get(0).play();
         $("#controlMusic").find(".fa-play-circle").addClass("fa-pause-circle").removeClass("fa-play-circle");
+		var id = setInterval(frame, 1);
     }
+
 }
 
 function previous(){
@@ -141,6 +149,7 @@ function previous(){
         $("#musicimage").attr("src", imagepath + "?" + new Date().getTime() );
         $('#music').get(0).setAttribute("src", musicpath);
         $('#music').get(0).play();
+		var id = setInterval(frame, 1);
         // $("#playicon").removeClass("fa fa-play-circle-o");
         // $("#playicon").addClass("fa fa-stop-circle-o");
     }else{
@@ -152,6 +161,7 @@ function previous(){
         $("#musicimage").attr("src", imagepath + "?" + new Date().getTime() );
         $('#music').get(0).play();
         $("#controlMusic").find(".fa-play-circle").addClass("fa-pause-circle").removeClass("fa-play-circle");
+		var id = setInterval(frame, 1);
     }
 
 }
