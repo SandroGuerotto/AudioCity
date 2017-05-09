@@ -35,8 +35,6 @@ function startmusic(e) {
         $('#songname').text(data_new[2]); // set song name
     }
 
-   
-
     $('#controlMusic').show();
 	
     if(audiostream.paused){
@@ -53,7 +51,7 @@ function startmusic(e) {
     var id = setInterval(frame, 1);
     function frame() {
         if (width >= 100) {
-			clearInterval(id);          
+			// clearInterval(id);
         } else {
             width = (audiostream.currentTime / audiostream.duration) * 100;
             $('#musicbar').width( width + '%');
