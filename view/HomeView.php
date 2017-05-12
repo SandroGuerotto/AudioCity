@@ -42,7 +42,7 @@
 <!-- Discover Section -->
 <div class="container light-grey padding-64" id="discover">
   <h3 class="center">DISCOVER</h3>
-  <p class="center large">TOP 4</p>
+  <p class="center large">TOP 5</p>
   <div class="  row-padding " style="margin-top:64px">
       <?php include_once '../controller/TopSongs.php';
         $top = new TopSongs();

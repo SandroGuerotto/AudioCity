@@ -35,8 +35,6 @@ function startmusic(e) {
         $('#songname').text(data_new[2]); // set song name
     }
 
-   
-
     $('#controlMusic').show();
 	
     if(audiostream.paused){

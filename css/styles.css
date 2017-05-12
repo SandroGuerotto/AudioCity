@@ -209,12 +209,12 @@ div[id=maincontrolbar]{
 }
 
 #musictext{
-padding: 0em;
-
+	padding: 0em;
 }
 
 
 #texttitle{
+	font-size: 18px;
 }
 
 #tracktime{
